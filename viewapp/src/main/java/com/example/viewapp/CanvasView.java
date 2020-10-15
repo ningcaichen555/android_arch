@@ -21,6 +21,7 @@ public class CanvasView extends View {
     private ScreenUtil screenUtil;
     private Paint pointPaint;
     private Paint linePaint;
+    private Paint arcPaint;
     private RectF ovalRectF;
     //保存canvas的绘制过程
     private Picture mPicture;
@@ -54,6 +55,11 @@ public class CanvasView extends View {
         linePaint.setColor(Color.GREEN);
         linePaint.setStyle(Paint.Style.STROKE);
         linePaint.setStrokeWidth(screenUtil.dip2px(5f));
+
+        arcPaint = new Paint();
+        arcPaint.setColor(Color.YELLOW);
+        arcPaint.setStyle(Paint.Style.STROKE);
+        arcPaint.setStrokeWidth(screenUtil.dip2px(5f));
 
         ovalRectF = new RectF();
 
@@ -98,40 +104,58 @@ public class CanvasView extends View {
 
 
         //画布平移 平移只影响后续操作
+        canvas.save();
         canvas.translate(screenUtil.dip2px(30f), screenUtil.dip2px(30f));
         canvas.drawCircle(screenUtil.dip2px(60f), screenUtil.dip2px(220f), screenUtil.dip2px(30f), linePaint);
         canvas.translate(screenUtil.dip2px(30f), screenUtil.dip2px(30f));
         canvas.drawCircle(screenUtil.dip2px(60f), screenUtil.dip2px(220f), screenUtil.dip2px(30f), linePaint);
+        canvas.restore();
+
 
         mPicture.beginRecording(canvas.getWidth(), canvas.getHeight());
 
-        canvas.drawArc(arcRect, 0f, 90, true, linePaint);
+        canvas.drawArc(arcRect, 0f, 90, true, arcPaint);
 
-        canvas.rotate(90);
+        canvas.drawLine(screenUtil.dip2px(30f), screenUtil.dip2px(400f), screenUtil.dip2px(100f), screenUtil.dip2px(400f), arcPaint);
 
-        canvas.drawArc(arcRect, 0f, 90, true, linePaint);
+        canvas.rotate(90, canvas.getWidth() / 2, canvas.getHeight() / 2);
 
-        canvas.rotate(90);
+        canvas.drawArc(arcRect, 0f, 90, true, arcPaint);
 
-        canvas.drawArc(arcRect, 0f, 90, true, linePaint);
+        canvas.drawLine(screenUtil.dip2px(30f), screenUtil.dip2px(420f), screenUtil.dip2px(100f), screenUtil.dip2px(420f), arcPaint);
 
-        canvas.rotate(90);
+        canvas.rotate(90, canvas.getWidth() / 2, canvas.getHeight() / 2);
 
-        canvas.drawArc(arcRect, 0f, 90, true, linePaint);
+        canvas.drawArc(arcRect, 0f, 90, true, arcPaint);
 
-        canvas.rotate(90);
+        canvas.drawLine(screenUtil.dip2px(30f), screenUtil.dip2px(440f), screenUtil.dip2px(100f), screenUtil.dip2px(440f), arcPaint);
+
+        canvas.rotate(90, canvas.getWidth() / 2, canvas.getHeight() / 2);
+
+        canvas.drawArc(arcRect, 0f, 90, true, arcPaint);
+
+        canvas.drawLine(screenUtil.dip2px(30f), screenUtil.dip2px(460f), screenUtil.dip2px(100f), screenUtil.dip2px(460f), arcPaint);
+
+        canvas.rotate(90, canvas.getWidth() / 2, canvas.getHeight() / 2);
 
         mPicture.endRecording();
 
-//        mPicture.draw(canvas);
+        canvas.scale(0.5f, 0.5f);
+
+        canvas.drawPicture(mPicture);
 
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-//        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         int width = MeasureSpec.getSize(widthMeasureSpec);
         int height = MeasureSpec.getSize(heightMeasureSpec);
         setMeasuredDimension(width, height);
+    }
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+
     }
 }
