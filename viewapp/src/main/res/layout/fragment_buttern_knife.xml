@@ -10,11 +10,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <com.example.viewapp.CanvasView
+   <!-- <com.example.viewapp.CanvasView
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <com.example.viewapp.BezierView
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent" />-->
+
+    <com.example.viewapp.PathView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </FrameLayout>

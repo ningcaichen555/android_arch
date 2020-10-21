@@ -1,8 +1,10 @@
 package com.example.android_arch
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.example.viewapp.ButterKnifeActivity
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import okhttp3.*
@@ -26,8 +28,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        startActivity(Intent(this,ButterKnifeActivity::class.java))
     }
 
+    /**
+     * 上传收录地址
+     */
     fun pullList() {
         val url = "http://182.92.97.72:8080/article/select"
         val map = hashMapOf<String, Int>()
