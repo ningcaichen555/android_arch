@@ -15,13 +15,7 @@ import java.io.IOException
 import java.lang.StringBuilder
 import java.util.concurrent.TimeUnit
 
-val client = OkHttpClient.Builder()
-    .writeTimeout(30000L, TimeUnit.MILLISECONDS)
-    .readTimeout(30000L, TimeUnit.MILLISECONDS)
-    .build()
-val json = "application/json; charset=utf-8".toMediaType();
-val text = "text/plain; charset=utf-8".toMediaType();
-val gSon: Gson = GsonBuilder().create()
+
 
 class MainActivity : AppCompatActivity() {
 

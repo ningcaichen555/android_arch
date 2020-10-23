@@ -4,7 +4,6 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.ViewGroup
-import java.util.jar.Attributes
 
 /**
  * @author caichen
@@ -23,7 +22,19 @@ class Viewgroup1 : ViewGroup {
     )
 
     override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {
-        super.layout(l, t, r, b)
+        for (i in 0 until childCount) {
+            val view = getChildAt(i)
+            view.layout(0, 0, view.width, view.top)
+        }
+    }
+
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+//        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+        val childCount = childCount
+        for (i in 0 until childCount) {
+            val children = getChildAt(i)
+            measureChild(children, widthMeasureSpec, heightMeasureSpec)
+        }
     }
 
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {

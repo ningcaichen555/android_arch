@@ -3,14 +3,24 @@ package com.example.android_arch
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import okhttp3.Call
-import okhttp3.Callback
-import okhttp3.Request
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
+import okhttp3.*
+import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.toRequestBody
-import okhttp3.Response
 
 import java.io.IOException
 import java.lang.StringBuilder
+import java.util.concurrent.TimeUnit
+
+val client = OkHttpClient.Builder()
+    .writeTimeout(30000L, TimeUnit.MILLISECONDS)
+    .readTimeout(30000L, TimeUnit.MILLISECONDS)
+    .build()
+val json = "application/json; charset=utf-8".toMediaType();
+val text = "text/plain; charset=utf-8".toMediaType();
+val gSon: Gson = GsonBuilder().create()
+
 
 class ArticleActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

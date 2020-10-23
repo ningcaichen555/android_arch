@@ -26,4 +26,11 @@ class View1 : View {
         return super.onTouchEvent(event)
     }
 
+//    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+//        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+//        val width = MeasureSpec.getSize(widthMeasureSpec)
+//        val height = MeasureSpec.getSize(heightMeasureSpec)
+//        setMeasuredDimension(width, height)
+//    }
+
 }
