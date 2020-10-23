@@ -29,7 +29,7 @@ class Viewgroup1 : ViewGroup {
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-//        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
         val childCount = childCount
         for (i in 0 until childCount) {
             val children = getChildAt(i)
