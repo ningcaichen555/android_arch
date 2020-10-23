@@ -19,6 +19,8 @@ class BezierView extends View {
     private float centerX, centerY;
     private GestureDetector gestureDetector;
 
+    private PointF start2, end2, controlL, controlR;
+
     public BezierView(Context context) {
         this(context, null);
     }
@@ -43,6 +45,11 @@ class BezierView extends View {
         end = new PointF(0, 0);
         control = new PointF(0, 0);
 
+        start2 = new PointF(0, 0);
+        end2 = new PointF(0, 0);
+        controlL = new PointF(0, 0);
+        controlR = new PointF(0, 0);
+
         gestureDetector = new GestureDetector(getContext(), new GestureDetector.OnGestureListener() {
             @Override
             public boolean onDown(MotionEvent e) {
@@ -63,8 +70,8 @@ class BezierView extends View {
             public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
                 float x = e2.getX();
                 float y = e2.getY();
-                control.x = x;
-                control.y = y;
+                controlL.x = x;
+                controlL.y = y;
                 invalidate();
                 return true;
             }
@@ -87,13 +94,25 @@ class BezierView extends View {
         centerX = w / 2;
         centerY = h / 2;
         start.x = centerX - 200;
-        start.y = centerY;
+        start.y = centerY-200;
 
         end.x = centerX + 200;
-        end.y = centerY;
+        end.y = centerY-200;
 
         control.x = centerX;
-        control.y = centerY - 200;
+        control.y = centerY - 200-200;
+
+        start2.x = centerX - 300f;
+        start2.y = centerY + 300f;
+
+        end2.x = centerX + 300f;
+        end2.y = centerY + 300f;
+
+        controlL.x = centerX - 100f;
+        controlL.y = centerY + 100f;
+
+        controlR.x = centerX + 100f;
+        controlR.y = centerY + 100f;
     }
 
     @Override
@@ -125,5 +144,16 @@ class BezierView extends View {
         path.moveTo(start.x, start.y);
         path.quadTo(control.x, control.y, end.x, end.y);
         canvas.drawPath(path, mPaint);
+
+        canvas.drawPoint(start2.x, start2.y, mPaint);
+        canvas.drawPoint(end2.x, end2.y, mPaint);
+        canvas.drawPoint(controlL.x, controlL.y, mPaint);
+        canvas.drawPoint(controlR.x, controlR.y, mPaint);
+
+        //绘制贝塞尔曲线 两个控制点
+        Path path3 = new Path();
+        path3.moveTo(start2.x, start2.y);
+        path3.cubicTo(controlL.x, controlL.y,controlR.x, controlR.y, end2.x, end2.y);
+        canvas.drawPath(path3, mPaint);
     }
 }
