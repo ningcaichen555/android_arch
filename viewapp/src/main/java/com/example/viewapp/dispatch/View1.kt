@@ -4,6 +4,8 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
+import com.orhanobut.logger.Logger
+import utils.LogUtils
 
 /**
  * @author caichen
@@ -22,15 +24,15 @@ class View1 : View {
     )
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
-        print("onTouchEvent  ->  View1")
-        return super.onTouchEvent(event)
+        LogUtils.d("onTouchEvent","view1")
+        return true
     }
 
-//    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
 //        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-//        val width = MeasureSpec.getSize(widthMeasureSpec)
-//        val height = MeasureSpec.getSize(heightMeasureSpec)
-//        setMeasuredDimension(width, height)
-//    }
+        val width = MeasureSpec.getSize(widthMeasureSpec)
+        val height = MeasureSpec.getSize(heightMeasureSpec)
+        setMeasuredDimension(width, height)
+    }
 
 }

@@ -4,6 +4,8 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.ViewGroup
+import com.orhanobut.logger.Logger
+import utils.LogUtils
 
 /**
  * @author caichen
@@ -24,7 +26,7 @@ class Viewgroup1 : ViewGroup {
     override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {
         for (i in 0 until childCount) {
             val view = getChildAt(i)
-            view.layout(0, 0, view.width, view.top)
+            view.layout(0, 0, view.measuredWidth, view.measuredHeight)
         }
     }
 
@@ -38,17 +40,17 @@ class Viewgroup1 : ViewGroup {
     }
 
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
-        print("dispatchTouchEvent --> Viewgroup1")
+        LogUtils.d("dispatchTouchEvent","Viewgroup1")
         return super.dispatchTouchEvent(ev)
     }
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
-        print("onTouchEvent --> Viewgroup1")
+        LogUtils.d("onTouchEvent","Viewgroup1")
         return super.onTouchEvent(event)
     }
 
     override fun onInterceptTouchEvent(ev: MotionEvent?): Boolean {
-        print("onInterceptTouchEvent --> Viewgroup1")
+        LogUtils.d("onInterceptTouchEvent","Viewgroup1")
         return super.onInterceptTouchEvent(ev)
     }
 }

@@ -4,6 +4,8 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
+import com.orhanobut.logger.Logger
+import utils.LogUtils
 
 /**
  * @author caichen
@@ -22,7 +24,7 @@ class View2:View {
     )
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
-        print("onTouchEvent  ->  view2")
+        LogUtils.d("onTouchEvent","view2")
         return super.onTouchEvent(event)
     }
 
