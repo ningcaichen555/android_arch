@@ -25,6 +25,7 @@
         android:background="@color/colorPrimaryDark" />
 
     <com.example.viewapp.dispatch.Viewgroup2
+        android:id="@+id/vp2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/view_group">
@@ -43,4 +44,11 @@
             android:clickable="true"
             android:background="@color/colorPrimaryDark" />
     </com.example.viewapp.dispatch.Viewgroup2>
+
+
+    <com.example.viewapp.dispatch.MyCustomView
+        android:background="@color/colorAccent"
+        android:layout_below="@+id/vp2"
+        android:layout_width="200dp"
+        android:layout_height="200dp"/>
 </RelativeLayout>

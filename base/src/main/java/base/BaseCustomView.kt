@@ -10,9 +10,9 @@ import kotlin.properties.Delegates
  * @Description 自定义view基类
  * @createTime 2020年10月27日 10:55:00
  */
-class BaseCustomView : View {
-    var mWidth by Delegates.notNull<Int>()
-    var mHeight by Delegates.notNull<Int>()
+open class BaseCustomView : View {
+    var mWidth: Int = 0
+    var mHeight: Int = 0
 
     constructor(context: Context) : this(context, null)
     constructor(context: Context, attributeSet: AttributeSet?) : this(context, attributeSet, 0)
@@ -26,7 +26,7 @@ class BaseCustomView : View {
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
-        mWidth = w;
-        mHeight = h;
+        mWidth = w
+        mHeight = h
     }
 }
