@@ -64,20 +64,6 @@ class Camera2VideoFragment : Fragment(), View.OnClickListener,
 
     private val FRAGMENT_DIALOG = "dialog"
     private val TAG = "Camera2VideoFragment"
-    private val SENSOR_ORIENTATION_DEFAULT_DEGREES = 90
-    private val SENSOR_ORIENTATION_INVERSE_DEGREES = 270
-    private val DEFAULT_ORIENTATIONS = SparseIntArray().apply {
-        append(Surface.ROTATION_0, 90)
-        append(Surface.ROTATION_90, 0)
-        append(Surface.ROTATION_180, 270)
-        append(Surface.ROTATION_270, 180)
-    }
-    private val INVERSE_ORIENTATIONS = SparseIntArray().apply {
-        append(Surface.ROTATION_0, 270)
-        append(Surface.ROTATION_90, 180)
-        append(Surface.ROTATION_180, 90)
-        append(Surface.ROTATION_270, 0)
-    }
 
     /**
      * [TextureView.SurfaceTextureListener] handles several lifecycle events on a
@@ -473,32 +459,7 @@ class Camera2VideoFragment : Fragment(), View.OnClickListener,
 
     @Throws(IOException::class)
     private fun setUpMediaRecorder() {
-        val cameraActivity = activity ?: return
 
-        if (nextVideoAbsolutePath.isNullOrEmpty()) {
-            nextVideoAbsolutePath = getVideoFilePath(cameraActivity)
-        }
-
-        val rotation = cameraActivity.windowManager.defaultDisplay.rotation
-        when (sensorOrientation) {
-            SENSOR_ORIENTATION_DEFAULT_DEGREES ->
-                mediaRecorder?.setOrientationHint(DEFAULT_ORIENTATIONS.get(rotation))
-            SENSOR_ORIENTATION_INVERSE_DEGREES ->
-                mediaRecorder?.setOrientationHint(INVERSE_ORIENTATIONS.get(rotation))
-        }
-
-        mediaRecorder?.apply {
-            setAudioSource(MediaRecorder.AudioSource.MIC)
-            setVideoSource(MediaRecorder.VideoSource.SURFACE)
-            setOutputFormat(MediaRecorder.OutputFormat.MPEG_4)
-            setOutputFile(nextVideoAbsolutePath)
-            setVideoEncodingBitRate(10000000)
-            setVideoSize(640, 480)
-            setVideoFrameRate(30)
-            setVideoEncoder(MediaRecorder.VideoEncoder.H264)
-            setAudioEncoder(MediaRecorder.AudioEncoder.AAC)
-            prepare()
-        }
     }
 
     private fun getVideoFilePath(context: Context?): String {
@@ -517,7 +478,10 @@ class Camera2VideoFragment : Fragment(), View.OnClickListener,
 
         try {
             closePreviewSession()
-            setUpMediaRecorder()
+
+            RecordManager.initManager()
+            RecordManager.setUpManager(activity)
+
             val texture = textureView.surfaceTexture.apply {
                 setDefaultBufferSize(previewSize.width, previewSize.height)
             }
