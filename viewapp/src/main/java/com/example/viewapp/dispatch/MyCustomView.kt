@@ -52,6 +52,8 @@ class MyCustomView : BaseCustomView {
         val path = circlePath
         canvas?.drawPath(path, vPaint)
         circleRegion.setPath(path, clipRegion)
+
+        val matrix = Matrix()
     }
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
