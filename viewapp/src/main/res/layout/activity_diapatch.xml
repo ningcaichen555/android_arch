@@ -33,22 +33,27 @@
         <com.example.viewapp.dispatch.View1
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:clickable="true"
-            android:background="@color/colorAccent" />
+            android:background="@color/colorAccent"
+            android:clickable="true" />
 
         <com.example.viewapp.dispatch.View2
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="30dp"
-            android:clickable="true"
-            android:background="@color/colorPrimaryDark" />
+            android:background="@color/colorPrimaryDark"
+            android:clickable="true" />
     </com.example.viewapp.dispatch.Viewgroup2>
 
 
     <com.example.viewapp.dispatch.MyCustomView
-        android:background="@color/colorAccent"
-        android:layout_below="@+id/vp2"
         android:layout_width="200dp"
-        android:layout_height="200dp"/>
+        android:layout_height="200dp"
+        android:layout_below="@+id/vp2"
+        android:background="@color/colorAccent" />
+
+    <com.example.viewapp.scroll.MyScrollView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="#FFD3DA03" />
 </RelativeLayout>

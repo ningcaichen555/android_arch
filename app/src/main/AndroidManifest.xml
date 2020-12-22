@@ -19,19 +19,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".camera2.VideoRecordActivity"></activity>
-        <activity
-            android:name=".ArticleActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".MainActivity"
-            android:theme="@style/AppTheme.Launcher">
+        <activity android:name=".base_ui.LifeCycle2Activity"></activity>
+        <activity android:name=".base_ui.LifeCycleActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".camera2.VideoRecordActivity" />
+        <activity
+            android:name=".ArticleActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/AppTheme.Launcher"></activity>
         <activity
             android:name=".camera.VideoActivity"
             android:screenOrientation="portrait" />

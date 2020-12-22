@@ -9,4 +9,8 @@ class DiapatchActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_diapatch)
     }
+
+    suspend fun contutation{
+
+    }
 }

@@ -290,10 +290,10 @@ class Camera2VideoFragment : Fragment(), View.OnClickListener,
         }
     }
 
-    /*private fun hasPermissionsGranted(permissions: Array<String>) =
+    private fun hasPermissionsGranted(permissions: Array<String>) =
         permissions.none {
             checkSelfPermission((activity as FragmentActivity), it) != PERMISSION_GRANTED
-        }*/
+        }
 
     /**
      * Tries to open a [CameraDevice]. The result is listened by [stateCallback].
@@ -302,10 +302,10 @@ class Camera2VideoFragment : Fragment(), View.OnClickListener,
      */
     @SuppressLint("MissingPermission")
     private fun openCamera(width: Int, height: Int) {
-//        if (!hasPermissionsGranted(VIDEO_PERMISSIONS)) {
-//            requestVideoPermissions()
-//            return
-//        }
+        if (!hasPermissionsGranted(VIDEO_PERMISSIONS)) {
+            requestVideoPermissions()
+            return
+        }
 
         val cameraActivity = activity
         if (cameraActivity == null || cameraActivity.isFinishing) return
