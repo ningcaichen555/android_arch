@@ -10,7 +10,7 @@ class DiapatchActivity : AppCompatActivity() {
         setContentView(R.layout.activity_diapatch)
     }
 
-    suspend fun contutation{
+    fun contutation(){
 
     }
 }
