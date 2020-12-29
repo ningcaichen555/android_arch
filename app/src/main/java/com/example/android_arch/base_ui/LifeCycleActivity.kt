@@ -42,4 +42,25 @@ class LifeCycleActivity : AppCompatActivity() {
     fun click_to_next(view: View) {
         startActivity(Intent(this, LifeCycle2Activity::class.java))
     }
+
+    fun click_to_intent(view: View) {
+        val sendIntent = Intent().apply {
+            action = Intent.ACTION_SEND
+            putExtra(Intent.EXTRA_TEXT, "textMessage")
+            type = "text/plain"
+        }
+
+        // Verify that the intent will resolve to an activity
+        val resolveActivity = sendIntent.resolveActivity(packageManager)
+        if (resolveActivity != null) {
+            startActivity(sendIntent)
+        }
+
+        //强制使用选择器，每次可以选择不同的应用
+        val chooser = Intent.createChooser(sendIntent, "请选择")
+        // Verify that the intent will resolve to an activity
+        if (sendIntent.resolveActivity(packageManager) != null) {
+            startActivity(chooser)
+        }
+    }
 }

@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".base_ui.LifeCycleActivity">
-    <Button
-        android:text="click_to_next"
-        android:onClick="click_to_next"
+    tools:context=".viewbinding.ViewbindingActivity">
+    <TextView
+        android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
     <Button
-        android:text="click_to_intent"
-        android:onClick="click_to_intent"
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 </LinearLayout>
