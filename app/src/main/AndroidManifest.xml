@@ -37,11 +37,18 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
-            android:theme="@style/AppTheme.Launcher" />
+            android:theme="@style/AppTheme.Launcher"></activity>
         <activity
             android:name=".camera.VideoActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".camera2.CameraActivity" />
     </application>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" /> <!-- 往sdcard中写入数据的权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
