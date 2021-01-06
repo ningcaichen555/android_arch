@@ -8,6 +8,12 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" /> <!-- 往sdcard中写入数据的权限 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" /> <!-- 往sdcard中写入数据的权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".App"
@@ -19,36 +25,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".data_bind.DataBindActivity">
+        <activity android:name=".coroutine.CoroutineActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".data_bind.DataBindActivity">
+        </activity>
         <activity android:name=".viewbinding.ViewbindingActivity" />
         <activity android:name=".base_ui.LifeCycle2Activity" />
-        <activity android:name=".base_ui.LifeCycleActivity">
-
-        </activity>
+        <activity android:name=".base_ui.LifeCycleActivity"></activity>
         <activity android:name=".camera2.VideoRecordActivity" />
         <activity
             android:name=".ArticleActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
-            android:theme="@style/AppTheme.Launcher"></activity>
+            android:theme="@style/AppTheme.Launcher" />
         <activity
             android:name=".camera.VideoActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".camera2.CameraActivity" />
     </application>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO" /> <!-- 往sdcard中写入数据的权限 -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
-    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
