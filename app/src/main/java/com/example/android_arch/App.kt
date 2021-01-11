@@ -2,6 +2,10 @@ package com.example.android_arch
 
 import android.app.Application
 import android.os.Debug
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.OnLifecycleEvent
+import androidx.lifecycle.ProcessLifecycleOwner
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.FormatStrategy
 import com.orhanobut.logger.Logger
@@ -30,5 +34,31 @@ class App : Application() {
 
         //停止计时
         Debug.stopMethodTracing();
+
+        ProcessLifecycleOwner.get().lifecycle.addObserver(object :LifecycleObserver{
+            @OnLifecycleEvent(Lifecycle.Event.ON_START)
+            //应用前台
+            fun onStart(){
+
+            }
+
+            @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
+            //应用前台
+            fun onResume(){
+
+            }
+
+            @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
+            //应用后台
+            fun onPause(){
+
+            }
+
+            @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
+            //应用后台
+            fun onStop(){
+
+            }
+        })
     }
 }

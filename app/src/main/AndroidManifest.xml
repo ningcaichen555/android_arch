@@ -48,6 +48,7 @@
             android:name=".camera.VideoActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".camera2.CameraActivity" />
+        <service android:name=".aidl.RemoteService" android:process=":remoteService"></service>
     </application>
 
 </manifest>
