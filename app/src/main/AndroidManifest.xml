@@ -25,13 +25,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".aidl.AidlActivity"></activity>
-        <activity android:name=".coroutine.CoroutineActivity">
+        <activity android:name=".aidl.origin.AidlActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".coroutine.CoroutineActivity">
+
         </activity>
         <activity android:name=".data_bind.DataBindActivity"></activity>
         <activity android:name=".viewbinding.ViewbindingActivity" />
@@ -48,7 +50,7 @@
             android:name=".camera.VideoActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".camera2.CameraActivity" />
-        <service android:name=".aidl.RemoteService" android:process=":remoteService"></service>
+        <service android:name=".aidl.origin.RemoteService" android:process=":remoteService"></service>
     </application>
 
 </manifest>
