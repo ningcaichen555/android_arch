@@ -1,4 +1,4 @@
-package com.example.android_arch.aidl;
+package com.example.android_arch.aidl.custom;
 
 import android.os.IInterface;
 

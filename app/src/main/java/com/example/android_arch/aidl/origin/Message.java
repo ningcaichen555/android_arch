@@ -1,4 +1,4 @@
-package com.example.android_arch.aidl.origin.entity;
+package com.example.android_arch.aidl.origin;
 
 
 import android.os.Parcel;
@@ -7,7 +7,9 @@ import android.os.Parcelable;
 public class Message implements Parcelable {
     private String content;
     private boolean isSendSuccess;
+    public Message(){
 
+    }
     protected Message(Parcel in) {
         content = in.readString();
         isSendSuccess = in.readByte() != 0;
@@ -33,7 +35,7 @@ public class Message implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(content);
-        dest.writeBoolean(isSendSuccess);
+        dest.writeByte(isSendSuccess ? (byte) 0 : (byte) 1);
     }
 
     public String getContent() {

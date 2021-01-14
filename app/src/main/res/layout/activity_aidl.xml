@@ -6,6 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".aidl.origin.AidlActivity">
     <Button
+        android:onClick="bind"
+        android:text="绑定"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <Button
         android:text="启动"
         android:onClick="connect"
         android:layout_width="wrap_content"
@@ -18,6 +23,11 @@
     <Button
         android:onClick="isConnected"
         android:text="是否链接上"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:onClick="sendMsg"
+        android:text="发送消息"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 </LinearLayout>
