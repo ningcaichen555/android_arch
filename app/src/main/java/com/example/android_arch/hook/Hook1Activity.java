@@ -2,6 +2,7 @@ package com.example.android_arch.hook;
 
 import android.app.Activity;
 import android.app.Instrumentation;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -25,13 +26,23 @@ public class Hook1Activity extends BaseAppActivity {
         //01 方式 直接继承方法
 //        startActivity(new Intent(this, Hook2Activity.class));
         //02 方式 通过hook字段Instrumentation
-        Object mInstrumentation = RefInvoke.getFieldObject(Activity.class, this, "mInstrumentation");
-        LogUtils.INSTANCE.d("-----调用-----startActivity-----" + mInstrumentation);
-        EvilInstrumentation evilInstrumentation = new EvilInstrumentation((Instrumentation) mInstrumentation);
-        RefInvoke.setFieldObject(Activity.class, this, "mInstrumentation", evilInstrumentation);
-        Object mInstrumentation2 = RefInvoke.getFieldObject(Activity.class, this, "mInstrumentation");
-        LogUtils.INSTANCE.d("-----调用-----startActivity-----" + mInstrumentation2);
+//        Object mInstrumentation = RefInvoke.getFieldObject(Activity.class, this, "mInstrumentation");
+//        LogUtils.INSTANCE.d("-----调用-----startActivity-----" + mInstrumentation);
+//        EvilInstrumentation evilInstrumentation = new EvilInstrumentation((Instrumentation) mInstrumentation);
+//        RefInvoke.setFieldObject(Activity.class, this, "mInstrumentation", evilInstrumentation);
+//        Object mInstrumentation2 = RefInvoke.getFieldObject(Activity.class, this, "mInstrumentation");
+//        LogUtils.INSTANCE.d("-----调用-----startActivity-----" + mInstrumentation2);
 
         startActivity(new Intent(this, Hook2Activity.class));
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(newBase);
+        try {
+            AmsHookHelper.hookAms();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }
