@@ -17,8 +17,8 @@ import utils.LogUtils;
 public class BaseAppActivity extends AppCompatActivity {
     @Override
     public void startActivityForResult(Intent intent, int requestCode) {
-        LogUtils.INSTANCE.d("-----调用前-----intent" + intent + "requestCode" + requestCode);
+//        LogUtils.INSTANCE.d("-----调用前-----intent" + intent + "requestCode" + requestCode);
         super.startActivityForResult(intent, requestCode);
-        LogUtils.INSTANCE.d("-----调用后-----intent" + intent + "requestCode" + requestCode);
+//        LogUtils.INSTANCE.d("-----调用后-----intent" + intent + "requestCode" + requestCode);
     }
 }
