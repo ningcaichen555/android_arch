@@ -1,5 +1,8 @@
 package com.example.android_arch.hook;
 
+import android.content.ComponentName;
+import android.content.Intent;
+
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
@@ -22,7 +25,30 @@ class InvokeHelper implements InvocationHandler {
 
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-        LogUtils.INSTANCE.d("-------1-------- invoke");
+        if (method.getName().equals("startActivity")) {
+            LogUtils.INSTANCE.d("-------hook startActivity-------- " + method);
+
+            Intent raw = null;
+            int index = 0;
+            for (int i = 0; i < args.length; i++) {
+                LogUtils.INSTANCE.d("args[i]" + args[i]);
+                if (args[i] instanceof Intent){
+                    raw =(Intent) args[i];
+                    index = i;
+                    break;
+                }
+            }
+
+            Intent newIntent =new Intent();
+            String packageName = raw.getComponent().getPackageName();
+
+            ComponentName componentName = new ComponentName(packageName,SubActivity.class.getName());
+            newIntent.setComponent(componentName);
+
+            newIntent.putExtra("EXTRA_INTENT",raw);
+
+            args[index] = newIntent;
+        }
         return method.invoke(object, args);
     }
 }

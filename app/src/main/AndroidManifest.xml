@@ -25,7 +25,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".hook.Hook2Activity"></activity>
+        <activity android:name=".hook.SubActivity" />
+        <activity android:name=".hook.Hook2Activity" />
         <activity android:name=".hook.Hook1Activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,9 +34,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".aidl.origin.AidlActivity">
-
-        </activity>
+        <activity android:name=".aidl.origin.AidlActivity"></activity>
         <activity android:name=".coroutine.CoroutineActivity" />
         <activity android:name=".data_bind.DataBindActivity" />
         <activity android:name=".viewbinding.ViewbindingActivity" />

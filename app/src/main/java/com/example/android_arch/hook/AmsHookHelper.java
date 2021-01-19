@@ -27,7 +27,7 @@ class AmsHookHelper {
 
         /* -----------------------------*/
 
-        /*Class<?> activityTaskManagerClass = Class.forName("android.app.ActivityTaskManager");
+        Class<?> activityTaskManagerClass = Class.forName("android.app.ActivityTaskManager");
         Field iActivityTaskManagerSingleton1 = activityTaskManagerClass.getDeclaredField("IActivityTaskManagerSingleton");
         iActivityTaskManagerSingleton1.setAccessible(true);
         Object iActivityTaskManagerSingletonObject = iActivityTaskManagerSingleton1.get(null);
@@ -39,7 +39,7 @@ class AmsHookHelper {
 
         Class<?> IActivityTaskManagerClass = Class.forName("android.app.IActivityTaskManager");
         Object proxyObj = Proxy.newProxyInstance(iActivityTaskManagerSingletonObject.getClass().getClassLoader(), new Class[]{IActivityTaskManagerClass}, new InvokeHelper(singTonClassObj));
-        mInstanceField.set(iActivityTaskManagerSingletonObject, proxyObj);*/
+        mInstanceField.set(iActivityTaskManagerSingletonObject, proxyObj);
     }
 
 }
