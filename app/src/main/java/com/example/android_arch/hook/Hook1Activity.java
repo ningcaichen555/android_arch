@@ -36,13 +36,13 @@ public class Hook1Activity extends BaseAppActivity {
 //        startActivity(new Intent(this, Hook2Activity.class));
         //02 方式 通过hook字段Instrumentation
 //        Object mInstrumentation = RefInvoke.getFieldObject(Activity.class, this, "mInstrumentation");
-//        LogUtils.INSTANCE.d("-----调用-----startActivity-----" + mInstrumentation);
+//        LogUtils.INSTANCE.d("-----通过hook字段Instrumentation-----startActivity-----" + mInstrumentation);
 //        EvilInstrumentation evilInstrumentation = new EvilInstrumentation((Instrumentation) mInstrumentation);
 //        RefInvoke.setFieldObject(Activity.class, this, "mInstrumentation", evilInstrumentation);
 //        Object mInstrumentation2 = RefInvoke.getFieldObject(Activity.class, this, "mInstrumentation");
-//        LogUtils.INSTANCE.d("-----调用-----startActivity-----" + mInstrumentation2);
+//        LogUtils.INSTANCE.d("-----通过hook字段Instrumentation-----startActivity-----" + mInstrumentation2);
 
-        startActivity(new Intent(this, Hook2Activity.class));
+        startActivity(new Intent(this, RealActivity.class));
     }
 
     @Override
@@ -51,23 +51,23 @@ public class Hook1Activity extends BaseAppActivity {
         try {
             AmsHookHelper.hookAms();
 
-            //拿到主线程class
-            Class<?> activityThreadClass = Class.forName("android.app.ActivityThread");
-            //拿到字段mH
-            Field mH = activityThreadClass.getDeclaredField("mH");
-            mH.setAccessible(true);
-            //拿到主线程字段
-            Field sCurrentActivityThread = activityThreadClass.getDeclaredField("sCurrentActivityThread");
-            sCurrentActivityThread.setAccessible(true);
-            //获取主线程对象
-            Object sCurrentActivityThreadObj = sCurrentActivityThread.get(this);
-            Handler h = (Handler) mH.get(sCurrentActivityThreadObj);
-
-            Class<?> handlerClass = Class.forName("android.os.Handler");
-            Field mCallback = handlerClass.getDeclaredField("mCallback");
-            mCallback.setAccessible(true);
-            CallbackHelper callbackHelper = new CallbackHelper(h);
-            mCallback.set(h, callbackHelper);
+//            //拿到主线程class
+//            Class<?> activityThreadClass = Class.forName("android.app.ActivityThread");
+//            //拿到字段mH
+//            Field mH = activityThreadClass.getDeclaredField("mH");
+//            mH.setAccessible(true);
+//            //拿到主线程字段
+//            Field sCurrentActivityThread = activityThreadClass.getDeclaredField("sCurrentActivityThread");
+//            sCurrentActivityThread.setAccessible(true);
+//            //获取主线程对象
+//            Object sCurrentActivityThreadObj = sCurrentActivityThread.get(this);
+//            Handler h = (Handler) mH.get(sCurrentActivityThreadObj);
+//
+//            Class<?> handlerClass = Class.forName("android.os.Handler");
+//            Field mCallback = handlerClass.getDeclaredField("mCallback");
+//            mCallback.setAccessible(true);
+//            CallbackHelper callbackHelper = new CallbackHelper(h);
+//            mCallback.set(h, callbackHelper);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
@@ -86,17 +86,14 @@ public class Hook1Activity extends BaseAppActivity {
 
         @Override
         public boolean handleMessage(@NonNull Message msg) {
-            LogUtils.INSTANCE.d("----hook CallbackHelper-----" + msg);
-            LogUtils.INSTANCE.d("----hook CallbackHelper-----" + msg);
 //            if (msg.what == 159) {
 //                LogUtils.INSTANCE.d("----hook CallbackHelper-----" + msg);
 //                Object obj = msg.obj;
-//                Object intent1 = RefInvoke.getFieldObject(obj, "intent");
 //                Class<?> objClass = obj.getClass();
 //                try {
 //                    Field intent = objClass.getDeclaredField("intent");
 //                    Intent intentObj = (Intent) intent.get(obj);
-//                    Intent extra_intent = intentObj.getParcelableExtra("EXTRA_INTENT");
+//                    Intent extra_intent = intentObj.getParcelableExtra("EXTRA_ACTIVITY_INTENT");
 //                    intentObj.setComponent(extra_intent.getComponent());
 //                } catch (NoSuchFieldException | IllegalAccessException e) {
 //                    e.printStackTrace();

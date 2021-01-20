@@ -1,9 +1,17 @@
 package com.example.android_arch.hook;
 
+import android.content.ComponentName;
+import android.content.Intent;
+import android.os.IBinder;
+
 import com.example.android_arch.App;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
+
+import utils.LogUtils;
 
 /**
  * @author caichen QQ:345233199
@@ -27,19 +35,57 @@ class AmsHookHelper {
 
         /* -----------------------------*/
 
+        //原生方式hook Amn.getDefault
         Class<?> activityTaskManagerClass = Class.forName("android.app.ActivityTaskManager");
-        Field iActivityTaskManagerSingleton1 = activityTaskManagerClass.getDeclaredField("IActivityTaskManagerSingleton");
-        iActivityTaskManagerSingleton1.setAccessible(true);
-        Object iActivityTaskManagerSingletonObject = iActivityTaskManagerSingleton1.get(null);
+        Field iActivityTaskManagerSingletonField = activityTaskManagerClass.getDeclaredField("IActivityTaskManagerSingleton");
+        iActivityTaskManagerSingletonField.setAccessible(true);
+        Object iActivityTaskManagerSingleton = iActivityTaskManagerSingletonField.get(null);
 
-        Class<?> singTonClass = Class.forName("android.util.Singleton");
-        Field mInstanceField = singTonClass.getDeclaredField("mInstance");
-        mInstanceField.setAccessible(true);
-        Object singTonClassObj = mInstanceField.get(iActivityTaskManagerSingletonObject);
+        Class<?> singleTonClass = Class.forName("android.util.Singleton");
+        Field mInstance = singleTonClass.getDeclaredField("mInstance");
+        mInstance.setAccessible(true);
 
-        Class<?> IActivityTaskManagerClass = Class.forName("android.app.IActivityTaskManager");
-        Object proxyObj = Proxy.newProxyInstance(iActivityTaskManagerSingletonObject.getClass().getClassLoader(), new Class[]{IActivityTaskManagerClass}, new InvokeHelper(singTonClassObj));
-        mInstanceField.set(iActivityTaskManagerSingletonObject, proxyObj);
+        //IActivityTaskManager
+        Object activityTaskManagerObj = mInstance.get(iActivityTaskManagerSingleton);
+        Class<?> iActivityTaskManagerClass = Class.forName("android.app.IActivityTaskManager");
+        Object proxyInstance = Proxy.newProxyInstance(ClassLoader.getSystemClassLoader(), new Class[]{iActivityTaskManagerClass}, new Handle(activityTaskManagerObj));
+        mInstance.set(iActivityTaskManagerSingleton, proxyInstance);
     }
 
+    static class Handle implements InvocationHandler {
+        private Object object;
+
+        public Handle(Object o) {
+            this.object = o;
+        }
+
+        @Override
+        public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+
+            if (method.getName().equals("startActivity")) {
+                LogUtils.INSTANCE.d("-------hook startActivity-------- " + method);
+                Intent raw = null;
+                int index = 0;
+                for (int i = 0; i < args.length; i++) {
+                    LogUtils.INSTANCE.d("args[i]" + args[i]);
+                    if (args[i] instanceof Intent) {
+                        raw = (Intent) args[i];
+                        index = i;
+                        break;
+                    }
+                }
+
+                Intent newIntent = new Intent();
+                String packageName = raw.getComponent().getPackageName();
+
+                ComponentName componentName = new ComponentName(packageName, SubActivity.class.getName());
+                newIntent.setComponent(componentName);
+
+                newIntent.putExtra("EXTRA_ACTIVITY_INTENT", raw);
+
+                args[index] = newIntent;
+            }
+            return method.invoke(object, args);
+        }
+    }
 }

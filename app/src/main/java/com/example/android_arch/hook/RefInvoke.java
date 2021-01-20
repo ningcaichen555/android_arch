@@ -12,7 +12,7 @@ import java.lang.reflect.Method;
  * @time 2021/1/17 16:17
  * @class describe
  */
-class RefInvoke {
+public class RefInvoke {
     /**
      * 根据全类名反射无参构造函数
      * 调用方式   Object obj = RefInvoke.createObject(className);

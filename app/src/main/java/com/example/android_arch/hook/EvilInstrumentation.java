@@ -1,11 +1,18 @@
 package com.example.android_arch.hook;
 
+import android.app.Activity;
+import android.app.Application;
 import android.app.Instrumentation;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.os.Parcelable;
+
 import java.lang.reflect.InvocationTargetException;
+
 import utils.LogUtils;
 
 
@@ -27,9 +34,17 @@ public class EvilInstrumentation extends Instrumentation {
     public ActivityResult execStartActivity(
             Context who, IBinder contextThread, IBinder token, String target,
             Intent intent, int requestCode, Bundle options) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        LogUtils.INSTANCE.d("-----调用-----EvilInstrumentation");
+        LogUtils.INSTANCE.d("-----调用-----execStartActivity");
         Class[] argType = {Context.class, IBinder.class, IBinder.class, String.class, Intent.class, int.class, Bundle.class};
         Object[] args = {who, contextThread, token, target, intent, requestCode, options};
-        return (ActivityResult) RefInvoke.invokeInstanceMethod(instrumentation,"execStartActivity",argType,args);
+        return (ActivityResult) RefInvoke.invokeInstanceMethod(instrumentation, "execStartActivity", argType, args);
+    }
+
+    public Activity newActivity(ClassLoader cl, String className,
+                                Intent intent) throws IllegalAccessException, InstantiationException, ClassNotFoundException {
+        LogUtils.INSTANCE.d("-----调用-----newActivity");
+        Intent extra_activity_intent = intent.getParcelableExtra("EXTRA_ACTIVITY_INTENT");
+        String realClassName = extra_activity_intent.getComponent().getClassName();
+        return instrumentation.newActivity(cl, realClassName, extra_activity_intent);
     }
 }
