@@ -1,27 +1,14 @@
 package com.example.android_arch.hook;
 
-import android.app.Activity;
-import android.app.Instrumentation;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
-
-import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
-
 import com.example.android_arch.R;
 import com.example.android_arch.base.BaseAppActivity;
-
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Method;
-import java.lang.reflect.Proxy;
-
-import okhttp3.internal.http2.Http2Reader;
-import utils.LogUtils;
 
 public class Hook1Activity extends BaseAppActivity {
 
@@ -42,7 +29,7 @@ public class Hook1Activity extends BaseAppActivity {
 //        Object mInstrumentation2 = RefInvoke.getFieldObject(Activity.class, this, "mInstrumentation");
 //        LogUtils.INSTANCE.d("-----通过hook字段Instrumentation-----startActivity-----" + mInstrumentation2);
 
-        startActivity(new Intent(this, RealActivity.class));
+        startActivity(new Intent(this, Hook2Activity.class));
     }
 
     @Override

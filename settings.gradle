@@ -1,3 +1,5 @@
+include ':plugin'
+include ':pluginLib'
 include ':base'
 include ':viewapp'
 include ':app'
