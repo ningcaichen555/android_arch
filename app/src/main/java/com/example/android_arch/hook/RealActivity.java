@@ -16,6 +16,8 @@ import com.top.pluginlibrary.IcallBack;
 import com.top.pluginlibrary.Idynamic;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
@@ -43,6 +45,15 @@ public class RealActivity extends BaseAppActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_real);
+
+        //获取assets目录下的文件
+        try {
+            InputStream open = getResources().getAssets().open("plugin.apk");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        String string = getResources().getString(R.string.app_name);
 
         File filesDir = this.getFilesDir();
         LogUtils.INSTANCE.d(filesDir.getAbsolutePath());

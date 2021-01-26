@@ -6,6 +6,8 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ProcessLifecycleOwner
+import com.example.android_arch.base.BaseDexClassLoaderHookHelper
+import com.example.android_arch.base.PluginManager
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.FormatStrategy
 import com.orhanobut.logger.Logger
@@ -60,5 +62,7 @@ class App : Application() {
 
             }
         })
+
+        PluginManager.init(this)
     }
 }
