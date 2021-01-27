@@ -36,20 +36,20 @@ class AmsHookHelper {
         /* -----------------------------*/
 
         //原生方式hook Amn.getDefault
-        Class<?> activityTaskManagerClass = Class.forName("android.app.ActivityTaskManager");
-        Field iActivityTaskManagerSingletonField = activityTaskManagerClass.getDeclaredField("IActivityTaskManagerSingleton");
-        iActivityTaskManagerSingletonField.setAccessible(true);
-        Object iActivityTaskManagerSingleton = iActivityTaskManagerSingletonField.get(null);
-
-        Class<?> singleTonClass = Class.forName("android.util.Singleton");
-        Field mInstance = singleTonClass.getDeclaredField("mInstance");
-        mInstance.setAccessible(true);
-
-        //IActivityTaskManager
-        Object activityTaskManagerObj = mInstance.get(iActivityTaskManagerSingleton);
-        Class<?> iActivityTaskManagerClass = Class.forName("android.app.IActivityTaskManager");
-        Object proxyInstance = Proxy.newProxyInstance(ClassLoader.getSystemClassLoader(), new Class[]{iActivityTaskManagerClass}, new Handle(activityTaskManagerObj));
-        mInstance.set(iActivityTaskManagerSingleton, proxyInstance);
+//        Class<?> activityTaskManagerClass = Class.forName("android.app.ActivityTaskManager");
+//        Field iActivityTaskManagerSingletonField = activityTaskManagerClass.getDeclaredField("IActivityTaskManagerSingleton");
+//        iActivityTaskManagerSingletonField.setAccessible(true);
+//        Object iActivityTaskManagerSingleton = iActivityTaskManagerSingletonField.get(null);
+//
+//        Class<?> singleTonClass = Class.forName("android.util.Singleton");
+//        Field mInstance = singleTonClass.getDeclaredField("mInstance");
+//        mInstance.setAccessible(true);
+//
+//        //IActivityTaskManager
+//        Object activityTaskManagerObj = mInstance.get(iActivityTaskManagerSingleton);
+//        Class<?> iActivityTaskManagerClass = Class.forName("android.app.IActivityTaskManager");
+//        Object proxyInstance = Proxy.newProxyInstance(ClassLoader.getSystemClassLoader(), new Class[]{iActivityTaskManagerClass}, new Handle(activityTaskManagerObj));
+//        mInstance.set(iActivityTaskManagerSingleton, proxyInstance);
     }
 
     static class Handle implements InvocationHandler {
@@ -74,11 +74,10 @@ class AmsHookHelper {
                         break;
                     }
                 }
-
                 Intent newIntent = new Intent();
                 String packageName = raw.getComponent().getPackageName();
 
-                ComponentName componentName = new ComponentName(packageName, SubActivity.class.getName());
+                ComponentName componentName = new ComponentName("com.example.android_arch", SubActivity.class.getName());
                 newIntent.setComponent(componentName);
 
                 newIntent.putExtra("EXTRA_ACTIVITY_INTENT", raw);

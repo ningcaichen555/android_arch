@@ -33,15 +33,15 @@ public class BaseAppActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
-        //02 方式 通过hook字段Instrumentation
-        Object sCurrentActivityThread = RefInvoke.getFieldObject("android.app.ActivityThread", this, "sCurrentActivityThread");
-        LogUtils.INSTANCE.d("-----通过hook字段Instrumentation-----" + sCurrentActivityThread);
-        Object mInstrumentation = RefInvoke.getFieldObject(sCurrentActivityThread, "mInstrumentation");
-        EvilInstrumentation evilInstrumentation = new EvilInstrumentation((Instrumentation) mInstrumentation);
-
-        RefInvoke.setFieldObject(sCurrentActivityThread, "mInstrumentation", evilInstrumentation);
-        Object mInstrumentation2 = RefInvoke.getFieldObject(Activity.class, this, "mInstrumentation");
-        LogUtils.INSTANCE.d("-----通过hook字段Instrumentation-----" + mInstrumentation2);
+//        //02 方式 通过hook字段Instrumentation
+//        Object sCurrentActivityThread = RefInvoke.getFieldObject("android.app.ActivityThread", this, "sCurrentActivityThread");
+//        LogUtils.INSTANCE.d("-----通过hook字段Instrumentation-----" + sCurrentActivityThread);
+//        Object mInstrumentation = RefInvoke.getFieldObject(sCurrentActivityThread, "mInstrumentation");
+//        EvilInstrumentation evilInstrumentation = new EvilInstrumentation((Instrumentation) mInstrumentation);
+//
+//        RefInvoke.setFieldObject(sCurrentActivityThread, "mInstrumentation", evilInstrumentation);
+//        Object mInstrumentation2 = RefInvoke.getFieldObject(Activity.class, this, "mInstrumentation");
+//        LogUtils.INSTANCE.d("-----通过hook字段Instrumentation-----" + mInstrumentation2);
 
         super.onCreate(savedInstanceState);
     }

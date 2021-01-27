@@ -1,16 +1,19 @@
 package com.example.android_arch.hook;
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
+
 import androidx.annotation.NonNull;
 
 import com.example.android_arch.MainActivity;
 import com.example.android_arch.R;
 import com.example.android_arch.base.BaseAppActivity;
+import com.top.pluginlibrary.Idynamic;
 
 public class Hook1Activity extends BaseAppActivity {
 
@@ -20,7 +23,7 @@ public class Hook1Activity extends BaseAppActivity {
         setContentView(R.layout.activity_hook1);
     }
 
-    public void startActivity(View view) throws NoSuchFieldException, IllegalAccessException, ClassNotFoundException {
+    public void start(View view) throws NoSuchFieldException, IllegalAccessException, ClassNotFoundException {
         //01 方式 直接继承方法
 //        startActivity(new Intent(this, Hook2Activity.class));
         //02 方式 通过hook字段Instrumentation
@@ -32,8 +35,9 @@ public class Hook1Activity extends BaseAppActivity {
 //        LogUtils.INSTANCE.d("-----通过hook字段Instrumentation-----startActivity-----" + mInstrumentation2);
 
 //        startActivity(new Intent(this, Hook2Activity.class));
+        //启动插件中的activity
         Intent intent = new Intent();
-        intent.setClassName("com.top.plugindemo","MainActivity");
+        intent.setComponent(new ComponentName("com.top.plugindemo", "com.top.plugindemo.MainActivity"));
         startActivity(intent);
     }
 
@@ -42,7 +46,10 @@ public class Hook1Activity extends BaseAppActivity {
         super.attachBaseContext(newBase);
         try {
             AmsHookHelper.hookAms();
-            Utils.extractAssets(newBase, "plugin.apk");
+
+            //转换plugin.apk的位置
+//            Utils.extractAssets(newBase, "plugin.apk");
+
 //            //拿到主线程class
 //            Class<?> activityThreadClass = Class.forName("android.app.ActivityThread");
 //            //拿到字段mH
