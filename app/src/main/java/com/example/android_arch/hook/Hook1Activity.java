@@ -7,6 +7,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.View;
 import androidx.annotation.NonNull;
+
+import com.example.android_arch.MainActivity;
 import com.example.android_arch.R;
 import com.example.android_arch.base.BaseAppActivity;
 
@@ -29,7 +31,10 @@ public class Hook1Activity extends BaseAppActivity {
 //        Object mInstrumentation2 = RefInvoke.getFieldObject(Activity.class, this, "mInstrumentation");
 //        LogUtils.INSTANCE.d("-----通过hook字段Instrumentation-----startActivity-----" + mInstrumentation2);
 
-        startActivity(new Intent(this, Hook2Activity.class));
+//        startActivity(new Intent(this, Hook2Activity.class));
+        Intent intent = new Intent();
+        intent.setClassName("com.top.plugindemo","MainActivity");
+        startActivity(intent);
     }
 
     @Override
