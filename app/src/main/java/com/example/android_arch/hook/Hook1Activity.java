@@ -48,7 +48,7 @@ public class Hook1Activity extends BaseAppActivity {
             AmsHookHelper.hookAms();
 
             //转换plugin.apk的位置
-//            Utils.extractAssets(newBase, "plugin.apk");
+            Utils.extractAssets(newBase, "plugin.apk");
 
 //            //拿到主线程class
 //            Class<?> activityThreadClass = Class.forName("android.app.ActivityThread");

@@ -2,6 +2,7 @@ package com.example.android_arch.hook;
 
 import android.content.ComponentName;
 import android.content.Intent;
+import android.os.Build;
 import android.os.IBinder;
 
 import com.example.android_arch.App;
@@ -50,6 +51,35 @@ class AmsHookHelper {
 //        Class<?> iActivityTaskManagerClass = Class.forName("android.app.IActivityTaskManager");
 //        Object proxyInstance = Proxy.newProxyInstance(ClassLoader.getSystemClassLoader(), new Class[]{iActivityTaskManagerClass}, new Handle(activityTaskManagerObj));
 //        mInstance.set(iActivityTaskManagerSingleton, proxyInstance);
+
+        if (Build.VERSION.SDK_INT <= 25) {
+            //老版本 获取AMN的gDefault单例gDefault，gDefault是final静态的
+            Object gDefault = RefInvoke.getStaticFieldObject("android.app.ActivityManagerNative", "gDefault");
+            // gDefault是一个 android.util.Singleton<T>对象; 我们取出这个单例里面的mInstance字段
+            Object mInstance = RefInvoke.getFieldObject("android.util.Singleton", gDefault, "mInstance");
+            // 创建一个这个对象的代理对象MockClass1, 然后替换这个字段, 让我们的代理对象帮忙干活
+            Class<?> classB2Interface = Class.forName("android.app.IActivityManager");
+            Object proxy = Proxy.newProxyInstance(
+                    Thread.currentThread().getContextClassLoader(),
+                    new Class<?>[]{classB2Interface},
+                    new Handle(mInstance));
+
+            //把gDefault的mInstance字段，修改为proxy
+            RefInvoke.setFieldObject("android.util.Singleton", gDefault, "mInstance", proxy);
+        } else {
+            Object iActivityTaskManagerSingleton = RefInvoke.getStaticFieldObject("android.app.ActivityTaskManager", "IActivityTaskManagerSingleton");
+            // gDefault是一个 android.util.Singleton<T>对象; 我们取出这个单例里面的mInstance字段
+            Object mInstance = RefInvoke.getFieldObject("android.util.Singleton", iActivityTaskManagerSingleton, "mInstance");
+            // 创建一个这个对象的代理对象MockClass1, 然后替换这个字段, 让我们的代理对象帮忙干活
+            Class<?> classB2Interface = Class.forName("android.app.IActivityTaskManager");
+            Object proxy = Proxy.newProxyInstance(
+                    Thread.currentThread().getContextClassLoader(),
+                    new Class<?>[]{classB2Interface},
+                    new Handle(mInstance));
+
+            //把gDefault的mInstance字段，修改为proxy
+            RefInvoke.setFieldObject("android.util.Singleton", iActivityTaskManagerSingleton, "mInstance", proxy);
+        }
     }
 
     static class Handle implements InvocationHandler {
@@ -75,13 +105,9 @@ class AmsHookHelper {
                     }
                 }
                 Intent newIntent = new Intent();
-                String packageName = raw.getComponent().getPackageName();
-
                 ComponentName componentName = new ComponentName("com.example.android_arch", SubActivity.class.getName());
                 newIntent.setComponent(componentName);
-
                 newIntent.putExtra("EXTRA_ACTIVITY_INTENT", raw);
-
                 args[index] = newIntent;
             }
             return method.invoke(object, args);

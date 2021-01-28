@@ -1,6 +1,8 @@
 package com.example.android_arch.hook;
 
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -45,6 +47,7 @@ public class Hook2Activity extends BaseAppActivity {
         dexClassLoader = new DexClassLoader(dexPath, optimizedDirectory, null, getClassLoader());
         try {
             Class<?> beanClass = dexClassLoader.loadClass("com.top.plugindemo.Bean");
+            dexClassLoader.loadClass("com.top.plugindemo.MainActivity");
             IBean iBean = (IBean) beanClass.newInstance();
             Method getName = beanClass.getMethod("getName");
             getName.setAccessible(true);

@@ -42,9 +42,14 @@ public class EvilInstrumentation extends Instrumentation {
 
     public Activity newActivity(ClassLoader cl, String className,
                                 Intent intent) throws IllegalAccessException, InstantiationException, ClassNotFoundException {
-        LogUtils.INSTANCE.d("-----调用-----newActivity");
+
         Intent extra_activity_intent = intent.getParcelableExtra("EXTRA_ACTIVITY_INTENT");
-        String realClassName = extra_activity_intent.getComponent().getClassName();
-        return instrumentation.newActivity(cl, realClassName, extra_activity_intent);
+        if (extra_activity_intent!=null){
+            String realClassName = extra_activity_intent.getComponent().getClassName();
+            LogUtils.INSTANCE.d("-----调用-----extra_activity_intent realClassName"+realClassName);
+            return instrumentation.newActivity(cl, realClassName, extra_activity_intent);
+        }
+        LogUtils.INSTANCE.d("-----调用-----intent className"+className);
+        return instrumentation.newActivity(cl,className,intent);
     }
 }
