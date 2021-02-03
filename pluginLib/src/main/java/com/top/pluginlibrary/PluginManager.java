@@ -1,21 +1,13 @@
-package com.example.android_arch.base;
+package com.top.pluginlibrary;
 
 import android.app.Application;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
-
-import com.example.android_arch.hook.DLUtils;
-import com.example.android_arch.hook.RefInvoke;
-import com.example.android_arch.hook.Utils;
-import com.example.android_arch.hook.entity.PluginItem;
-
 import java.io.File;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
-
-import utils.LogUtils;
 
 public class PluginManager {
     public final static List<PluginItem> plugins = new ArrayList<PluginItem>();

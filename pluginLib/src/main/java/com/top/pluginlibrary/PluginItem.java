@@ -1,4 +1,4 @@
-package com.example.android_arch.hook.entity;
+package com.top.pluginlibrary;
 
 import android.content.pm.PackageInfo;
 

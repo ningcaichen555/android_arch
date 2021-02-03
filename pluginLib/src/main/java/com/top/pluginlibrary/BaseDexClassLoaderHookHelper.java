@@ -1,22 +1,17 @@
-package com.example.android_arch.base;
+package com.top.pluginlibrary;
 
-import com.example.android_arch.hook.RefInvoke;
+import com.top.pluginlibrary.RefInvoke;
 
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Array;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
-import java.util.Arrays;
 
-import dalvik.system.BaseDexClassLoader;
 import dalvik.system.DexClassLoader;
 import dalvik.system.DexFile;
-import utils.LogUtils;
 
 public class BaseDexClassLoaderHookHelper {
-    public static void patchClassLoader(ClassLoader classLoader, File dexFile, File apkFile) throws NoSuchFieldException, IllegalAccessException, NoSuchMethodException, InvocationTargetException, InstantiationException, IOException {
+    public static void patchClassLoader(ClassLoader cl, File apkFile, File optDexFile) throws NoSuchFieldException, IllegalAccessException, NoSuchMethodException, InvocationTargetException, InstantiationException, IOException {
 //        //classLoader ---> dexClassLoader
 //        LogUtils.INSTANCE.d(classLoader.getClass() + "");
 //
@@ -61,7 +56,7 @@ public class BaseDexClassLoaderHookHelper {
 
 
         // 获取 BaseDexClassLoader : pathList
-        Object pathListObj = RefInvoke.getFieldObject(DexClassLoader.class.getSuperclass(), classLoader, "pathList");
+        Object pathListObj = RefInvoke.getFieldObject(DexClassLoader.class.getSuperclass(), cl, "pathList");
 
         // 获取 PathList: Element[] dexElements
         Object[] dexElements = (Object[]) RefInvoke.getFieldObject(pathListObj, "dexElements");
@@ -74,7 +69,7 @@ public class BaseDexClassLoaderHookHelper {
 
         // 构造插件Element(File file, boolean isDirectory, File zip, DexFile dexFile) 这个构造函数
         Class[] p1 = {File.class, boolean.class, File.class, DexFile.class};
-        Object[] v1 = {apkFile, false, apkFile, DexFile.loadDex(apkFile.getCanonicalPath(), dexFile.getAbsolutePath(), 0)};
+        Object[] v1 = {apkFile, false, apkFile, DexFile.loadDex(apkFile.getCanonicalPath(), optDexFile.getAbsolutePath(), 0)};
         Object o = RefInvoke.createObject(elementClass, p1, v1);
 
         Object[] toAddElementArray = new Object[]{o};

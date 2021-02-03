@@ -1,4 +1,4 @@
-package com.example.android_arch.hook;
+package com.top.pluginlibrary;
 
 import android.content.Context;
 import android.content.pm.ApplicationInfo;

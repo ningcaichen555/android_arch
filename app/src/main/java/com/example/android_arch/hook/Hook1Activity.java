@@ -1,21 +1,16 @@
 package com.example.android_arch.hook;
 
+import android.app.Activity;
 import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
-
-import androidx.annotation.NonNull;
-
-import com.example.android_arch.MainActivity;
 import com.example.android_arch.R;
-import com.example.android_arch.base.BaseAppActivity;
-import com.top.pluginlibrary.Idynamic;
+import com.top.pluginlibrary.PluginManager;
 
-public class Hook1Activity extends BaseAppActivity {
+public class Hook1Activity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,18 +32,19 @@ public class Hook1Activity extends BaseAppActivity {
 //        startActivity(new Intent(this, Hook2Activity.class));
         //启动插件中的activity
         Intent intent = new Intent();
-        intent.setComponent(new ComponentName("com.top.plugindemo", "com.top.plugindemo.MainActivity"));
+        String activityName = PluginManager.plugins.get(0).packageInfo.packageName + ".TestActivity";
+        intent.setComponent(new ComponentName(PluginManager.plugins.get(0).packageInfo.packageName, activityName));
         startActivity(intent);
     }
 
-    @Override
+   /* @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(newBase);
         try {
             AmsHookHelper.hookAms();
 
             //转换plugin.apk的位置
-            Utils.extractAssets(newBase, "plugin.apk");
+//            Utils.extractAssets(newBase, "plugin.apk");
 
 //            //拿到主线程class
 //            Class<?> activityThreadClass = Class.forName("android.app.ActivityThread");
@@ -74,7 +70,7 @@ public class Hook1Activity extends BaseAppActivity {
         } catch (NoSuchFieldException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
     class CallbackHelper implements Handler.Callback {
         private Handler object;
@@ -84,7 +80,7 @@ public class Hook1Activity extends BaseAppActivity {
         }
 
         @Override
-        public boolean handleMessage(@NonNull Message msg) {
+        public boolean handleMessage(Message msg) {
 //            if (msg.what == 159) {
 //                LogUtils.INSTANCE.d("----hook CallbackHelper-----" + msg);
 //                Object obj = msg.obj;

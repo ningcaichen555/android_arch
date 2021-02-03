@@ -1,15 +1,13 @@
 package com.example.android_arch.hook;
 
 import android.app.Activity;
-import android.app.Application;
 import android.app.Instrumentation;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.os.Parcelable;
+
+import com.top.pluginlibrary.RefInvoke;
 
 import java.lang.reflect.InvocationTargetException;
 

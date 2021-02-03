@@ -1,13 +1,14 @@
 package com.example.android_arch
 
 import android.app.Application
+import android.content.Context
 import android.os.Debug
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ProcessLifecycleOwner
-import com.example.android_arch.base.BaseDexClassLoaderHookHelper
-import com.example.android_arch.base.PluginManager
+import com.top.pluginlibrary.PluginManager
+import com.example.android_arch.hook.AmsHookHelper
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.FormatStrategy
 import com.orhanobut.logger.Logger
@@ -62,7 +63,12 @@ class App : Application() {
 
             }
         })
+    }
 
+    override fun attachBaseContext(base: Context?) {
+        super.attachBaseContext(base)
         PluginManager.init(this)
+        AmsHookHelper.hookAms()
+        AmsHookHelper.hookActivityThread()
     }
 }
