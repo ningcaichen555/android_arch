@@ -7,12 +7,14 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ProcessLifecycleOwner
-import com.top.pluginlibrary.PluginManager
 import com.example.android_arch.hook.AmsHookHelper
+import com.example.android_arch.html.PageInfo
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.FormatStrategy
 import com.orhanobut.logger.Logger
 import com.orhanobut.logger.PrettyFormatStrategy
+import com.top.pluginlibrary.PluginManager
+import java.util.*
 
 
 /**
@@ -21,6 +23,13 @@ import com.orhanobut.logger.PrettyFormatStrategy
  * @createTime 2020年10月26日 14:15:00
  */
 class App : Application() {
+    companion object {
+        var pages: HashMap<String, PageInfo> = HashMap<String, PageInfo>()
+        fun getContext(): Context {
+            return this.getContext()
+        }
+    }
+
     override fun onCreate() {
         super.onCreate()
         //开始计时 中间为需要统计执行时间的代码
@@ -38,31 +47,33 @@ class App : Application() {
         //停止计时
         Debug.stopMethodTracing();
 
-        ProcessLifecycleOwner.get().lifecycle.addObserver(object :LifecycleObserver{
+        ProcessLifecycleOwner.get().lifecycle.addObserver(object : LifecycleObserver {
             @OnLifecycleEvent(Lifecycle.Event.ON_START)
             //应用前台
-            fun onStart(){
+            fun onStart() {
 
             }
 
             @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
             //应用前台
-            fun onResume(){
+            fun onResume() {
 
             }
 
             @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
             //应用后台
-            fun onPause(){
+            fun onPause() {
 
             }
 
             @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
             //应用后台
-            fun onStop(){
+            fun onStop() {
 
             }
         })
+
+
     }
 
     override fun attachBaseContext(base: Context?) {
