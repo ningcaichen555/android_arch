@@ -72,30 +72,4 @@ public class Hook1Activity extends Activity {
         }
     }*/
 
-    class CallbackHelper implements Handler.Callback {
-        private Handler object;
-
-        public CallbackHelper(Handler o) {
-            this.object = o;
-        }
-
-        @Override
-        public boolean handleMessage(Message msg) {
-//            if (msg.what == 159) {
-//                LogUtils.INSTANCE.d("----hook CallbackHelper-----" + msg);
-//                Object obj = msg.obj;
-//                Class<?> objClass = obj.getClass();
-//                try {
-//                    Field intent = objClass.getDeclaredField("intent");
-//                    Intent intentObj = (Intent) intent.get(obj);
-//                    Intent extra_intent = intentObj.getParcelableExtra("EXTRA_ACTIVITY_INTENT");
-//                    intentObj.setComponent(extra_intent.getComponent());
-//                } catch (NoSuchFieldException | IllegalAccessException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-            object.handleMessage(msg);
-            return true;
-        }
-    }
 }

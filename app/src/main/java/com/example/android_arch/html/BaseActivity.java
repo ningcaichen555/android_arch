@@ -1,8 +1,11 @@
 package com.example.android_arch.html;
 
 import android.app.Activity;
+import android.app.AppComponentFactory;
 import android.content.ComponentName;
 import android.content.Intent;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.android_arch.App;
 import com.google.gson.Gson;
@@ -11,7 +14,7 @@ import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
-public class BaseActivity extends Activity {
+public class BaseActivity extends AppCompatActivity {
 
     @Override
     public void startActivityForResult(Intent intent, int requestCode) {

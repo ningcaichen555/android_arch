@@ -5,13 +5,13 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Environment;
-import android.text.Html;
 import android.view.View;
 
 import androidx.core.app.ActivityCompat;
+
+import com.example.android_arch.App;
 import com.example.android_arch.R;
 import com.example.android_arch.html.entity.Course;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,7 +22,7 @@ public class HtmlActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_html);
 
         //申请SDCard读写权限
         verifyStoragePermissions();
@@ -89,16 +89,16 @@ public class HtmlActivity extends BaseActivity {
         fields.put("Courses", 3);   //3 means object
 
         PageInfo pageInfo1 = new PageInfo("file://" + h5FilePath1, fields);
-//        App.pages.put("jianqiang.com.hook3.FirstActivity", pageInfo1);
+        App.Companion.getPages().put("com.example.android_arch.FirstActivity", pageInfo1);
 
         PageInfo pageInfo2 = new PageInfo("file://" + h5FilePath2, null);
-//        App.pages.put("jianqiang.com.hook3.ThirdActivity", pageInfo2);
+        App.Companion.getPages().put("com.example.android_arch.ThirdActivity", pageInfo2);
     }
 
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
     private static String[] PERMISSIONS_STORAGE = {
             Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE };
+            Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
     public void verifyStoragePermissions() {
         // Check if we have write permission

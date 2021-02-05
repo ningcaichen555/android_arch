@@ -79,7 +79,7 @@ class App : Application() {
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base)
         PluginManager.init(this)
-        AmsHookHelper.hookAms()
-        AmsHookHelper.hookActivityThread()
+//        AmsHookHelper.hookAms()
+//        AmsHookHelper.hookActivityThread()
     }
 }
