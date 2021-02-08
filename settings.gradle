@@ -4,3 +4,5 @@ include ':base'
 include ':viewapp'
 include ':app'
 rootProject.name = "android_arch"
+
+println("-----------------setting gradle ...")

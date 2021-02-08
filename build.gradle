@@ -24,3 +24,57 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+//
+//this.gradle.beforeProject {
+//    println("-----------------beforeProject is before configuration ")
+//}
+//
+//this.beforeEvaluate {
+//    println("-----------------beforeEvaluate is before configuration ")
+//}
+//
+//this.gradle.afterProject {
+//    println("-----------------afterProject is before configuration ")
+//}
+//
+//this.afterEvaluate {
+//    println("-----------------afterEvaluate is after configuration ")
+//}
+//
+//this.gradle.buildFinished {
+//    println("-----------------buildFinished is build complet")
+//}
+//
+//this.gradle.addProjectEvaluationListener(new ProjectEvaluationListener() {
+//    @Override
+//    void beforeEvaluate(Project project) {
+//
+//    }
+//
+//    @Override
+//    void afterEvaluate(Project project, ProjectState state) {
+//
+//    }
+//})
+
+//获取所有的 projects
+this.getAllprojects()
+def getParentProject(){
+    def parent = this.getParent()
+    println(parent.getName())
+
+}
+def getProjects(){
+    this.getAllprojects().eachWithIndex { Project entry, int i ->
+        if (i==0){
+            println("-----------Root project")
+        }else {
+            println("+----------${entry.getName()}")
+        }
+
+    }
+}
+
+project("app"){
+    println(it.name)
+}
