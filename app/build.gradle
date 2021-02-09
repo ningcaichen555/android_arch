@@ -2,6 +2,13 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
+//定义扩展属性
+//ext{
+//    compileSdkVersion = 29
+//    minSdkVersion = 21
+//    lib_lifecycle_service = 'androidx.lifecycle:lifecycle-service:2.2.0'
+//}
+
 android {
     compileSdkVersion 29
 
@@ -48,7 +55,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation project(":viewapp")
     implementation project(":pluginLib")
-    implementation "androidx.lifecycle:lifecycle-service:2.2.0"
+    implementation rootProject.ext.dependencies.commonlib.lib_lifecycle_service
     implementation "androidx.lifecycle:lifecycle-process:2.2.0"
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9'
 }

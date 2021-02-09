@@ -6,3 +6,7 @@ include ':app'
 rootProject.name = "android_arch"
 
 println("-----------------setting gradle ...")
+
+if (hasProperty("isLoadTest") ? isLoadTest.toBoolean() : false) {
+    include ':test'
+}
