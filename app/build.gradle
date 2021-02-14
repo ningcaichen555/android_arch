@@ -37,7 +37,7 @@ android {
         enabled = true
     }
 
-    dataBinding{
+    dataBinding {
         enabled = true
     }
 
@@ -55,7 +55,121 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation project(":viewapp")
     implementation project(":pluginLib")
+    implementation project(":tinkerdemo")
     implementation rootProject.ext.dependencies.commonlib.lib_lifecycle_service
     implementation "androidx.lifecycle:lifecycle-process:2.2.0"
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9'
+}
+//task方式直接创建
+task helloTask {
+    println("i am heelo task")
+}
+helloTask.setGroup("myCoustom")
+
+
+task "task1"(group: 'myCoustom', dependsOn: 'this is a test') {
+    println("i am heelo task1")
+}
+
+//TaskContainer创建
+this.tasks.create("task2") {
+    println("hello i am hello task2")
+}
+
+task excuteTask(group: 'myCoustom') {
+    doFirst {
+        println("this first do first")
+    }
+
+    doFirst {
+        println("this sencond do first")
+    }
+}
+excuteTask.doFirst {
+    println("this three do first")
+}
+//计算build总时长
+this.afterEvaluate { Project project ->
+    def startTime;
+    def endTime;
+
+    def preBuildTask = project.tasks.getByName("preBuild")
+    preBuildTask.doFirst {
+        startTime = System.currentTimeMillis()
+    }
+
+    def buildTask = project.tasks.getByName("build")
+    buildTask.doLast {
+        endTime = System.currentTimeMillis()
+        println("build总时长${endTime - startTime}")
+    }
+}
+
+task taskX{
+    doLast {
+        println("taskX")
+    }
+}
+
+task taskY{
+    doLast {
+        println("tasky")
+    }
+}
+
+task taskZ(dependsOn: [taskX,taskY],group: "myCoustom"){
+    dependsOn{
+        return this.tasks.findAll {
+            it.name.startsWith("lib")
+        }
+    }
+    doLast {
+        println("taskz")
+    }
+}
+
+
+task lib1{
+    doLast {
+        println("lib1")
+    }
+}
+
+task lib2{
+    doLast {
+        println("lib2")
+    }
+}
+
+task lib3{
+    doLast {
+        println("lib3")
+    }
+}
+
+ext{
+    versionCode = 100
+    versionName = "1.0.0"
+    versionTxt = new File('versionTxt.txt')
+    if (!versionTxt.exists()){
+        versionTxt.createNewFile()
+    }
+}
+
+task writeTask{
+    outputs.file(this.versionTxt)
+    def file = this.versionTxt as File
+    file.write(this.versionCode+"")
+    file.write(this.versionName)
+}
+
+task readTask{
+    inputs.file(this.versionTxt)
+    def file = this.versionTxt
+    println(file.text)
+}
+
+
+task taskTest(dependsOn: [writeTask,readTask],group: "myCoustom"){
+
 }

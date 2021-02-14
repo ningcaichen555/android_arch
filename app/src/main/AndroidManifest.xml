@@ -24,18 +24,18 @@
         <activity android:name=".html.SecondActivity"/>
         <activity android:name=".html.ThirdActivity"/>
         <activity android:name=".html.WebviewActivity"/>
-        <activity android:name=".html.HtmlActivity">
+        <activity android:name=".html.HtmlActivity"/>
+        <activity android:name=".component.LocalBroadcastActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".aidl.origin.AidlActivity" />
         <activity android:name=".hook.SubActivity" />
         <activity android:name=".hook.Hook2Activity" />
-        <activity android:name=".hook.Hook1Activity">
-        </activity>
-        <activity android:name=".aidl.origin.AidlActivity"/>
+        <activity android:name=".hook.Hook1Activity"/>
         <activity android:name=".coroutine.CoroutineActivity" />
         <activity android:name=".data_bind.DataBindActivity" />
         <activity android:name=".viewbinding.ViewbindingActivity" />
@@ -56,6 +56,7 @@
         <service
             android:name=".aidl.origin.RemoteService"
             android:process=":remoteService" />
+
     </application>
 
 </manifest>

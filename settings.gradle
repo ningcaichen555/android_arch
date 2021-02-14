@@ -1,3 +1,5 @@
+include ':tinkerdemo'
+include ':videolib'
 include ':plugin'
 include ':pluginLib'
 include ':base'
