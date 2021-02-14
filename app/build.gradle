@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+//apply plugin: 'davis'
 
 //定义扩展属性
 //ext{
@@ -39,6 +40,12 @@ android {
 
     dataBinding {
         enabled = true
+    }
+
+    sourceSets{
+        main{
+            res.srcDirs = ['res','res-ad','res-player']
+        }
     }
 
 }

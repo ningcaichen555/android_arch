@@ -1,3 +1,4 @@
+include ':gradlePlugin'
 include ':tinkerdemo'
 include ':videolib'
 include ':plugin'
