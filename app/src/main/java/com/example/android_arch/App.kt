@@ -7,6 +7,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ProcessLifecycleOwner
+import com.example.android_arch.eventbus.MyEventbusIndex
 import com.example.android_arch.hook.AmsHookHelper
 import com.example.android_arch.html.PageInfo
 import com.orhanobut.logger.AndroidLogAdapter
@@ -14,6 +15,8 @@ import com.orhanobut.logger.FormatStrategy
 import com.orhanobut.logger.Logger
 import com.orhanobut.logger.PrettyFormatStrategy
 import com.top.pluginlibrary.PluginManager
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.util.AsyncExecutor
 import java.util.*
 
 
@@ -23,6 +26,8 @@ import java.util.*
  * @createTime 2020年10月26日 14:15:00
  */
 class App : Application() {
+    val asyncExecutor = AsyncExecutor.create()
+
     companion object {
         var pages: HashMap<String, PageInfo> = HashMap<String, PageInfo>()
         fun getContext(): Context {
@@ -73,6 +78,7 @@ class App : Application() {
             }
         })
 
+//        EventBus.builder().addIndex(MyEventbusIndex()).installDefaultEventBus()
 
     }
 
