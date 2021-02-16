@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import com.example.android_arch.App
 import com.example.android_arch.R
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -26,18 +25,22 @@ class EventBusActivity : AppCompatActivity() {
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onError(throwableFailureEvent: ThrowableFailureEvent){
+    fun onError(throwableFailureEvent: ThrowableFailureEvent) {
         LogUtils.d(throwableFailureEvent.toString())
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onEventBusMessage(messageEvent: MessageEvent) {
-        Toast.makeText(this, messageEvent.message, Toast.LENGTH_LONG).show()
+//        Toast.makeText(this, messageEvent.message, Toast.LENGTH_LONG).show()
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onEventFather(messageFatherEvent: MessageFatherEvent) {
+        Toast.makeText(this, messageFatherEvent.message, Toast.LENGTH_LONG).show()
     }
 
     override fun onStart() {
         super.onStart()
-
     }
 
     override fun onStop() {
@@ -51,5 +54,9 @@ class EventBusActivity : AppCompatActivity() {
 
     fun postStick() {
         EventBus.getDefault().postSticky(MessageEvent("hello stick"))
+    }
+
+    fun clickToFather(view: View) {
+        EventBus.getDefault().post(MessageEvent("hello event father"))
     }
 }

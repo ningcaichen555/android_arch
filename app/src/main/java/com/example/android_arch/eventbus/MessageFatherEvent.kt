@@ -5,7 +5,7 @@ package com.example.android_arch.eventbus
  * @class name：com.example.android_arch.eventbus
  * @class describe
  * @author caichen QQ:345233199
- * @time 2021/2/15 21:44
+ * @time 2021/2/16 17:55
  * @class describe
  */
-data class MessageEvent(override val message: String) : MessageFatherEvent(message)
+open class MessageFatherEvent(open val message: String)
