@@ -18,12 +18,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".eventbus.EventBusActivity">
+        <activity android:name=".jetpack.DataBindingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".eventbus.EventBusActivity">
+
         </activity>
         <activity android:name=".eventbus.HandlerSendActivity1" />
         <activity android:name=".html.FirstActivity" />
@@ -31,9 +34,7 @@
         <activity android:name=".html.ThirdActivity" />
         <activity android:name=".html.WebviewActivity" />
         <activity android:name=".html.HtmlActivity" />
-        <activity android:name=".component.LocalBroadcastActivity">
-
-        </activity>
+        <activity android:name=".component.LocalBroadcastActivity"></activity>
         <activity android:name=".aidl.origin.AidlActivity" />
         <activity android:name=".hook.SubActivity" />
         <activity android:name=".hook.Hook2Activity" />
@@ -47,8 +48,7 @@
         <activity
             android:name=".ArticleActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".MainActivity"/>
+        <activity android:name=".MainActivity" />
         <activity
             android:name=".camera.VideoActivity"
             android:screenOrientation="portrait" />
