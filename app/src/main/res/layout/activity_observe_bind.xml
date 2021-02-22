@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <import type="androidx.databinding.ObservableArrayList" />
+
+        <variable
+            name="observerList"
+            type="ObservableArrayList&lt;String>" />
+
+        <variable
+            name="teacher"
+            type="com.example.android_arch.jetpack.databinding.entity.Teacher" />
+
+        <variable
+            name="presenter"
+            type="com.example.android_arch.jetpack.databinding.ObserveBindActivity.Presenter" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".jetpack.databinding.ObserveBindActivity">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/edit_name"
+            android:text="@{teacher.name}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onTextChanged="@{()->presenter.onTextChanged(teacher)}" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{observerList.get(0)}" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{teacher.map.hello}" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{editName.text}" />
+
+        <TextView
+            android:id="@+id/teacher_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</layout>

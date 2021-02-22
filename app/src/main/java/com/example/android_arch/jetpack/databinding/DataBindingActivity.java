@@ -1,4 +1,4 @@
-package com.example.android_arch.jetpack;
+package com.example.android_arch.jetpack.databinding;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -8,9 +8,9 @@ import android.os.Bundle;
 
 import com.example.android_arch.R;
 import com.example.android_arch.databinding.ActivityDataBindingBinding;
-import com.example.android_arch.jetpack.entity.Student;
-import com.example.android_arch.jetpack.entity.User;
-import com.example.android_arch.jetpack.entity.UserInfo;
+import com.example.android_arch.jetpack.databinding.entity.Student;
+import com.example.android_arch.jetpack.databinding.entity.User;
+import com.example.android_arch.jetpack.databinding.entity.UserInfo;
 
 public class DataBindingActivity extends AppCompatActivity {
 

@@ -18,32 +18,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".jetpack.DataBindingActivity">
+        <activity android:name=".jetpack.databinding.ObserveBindActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN"/>
             </intent-filter>
         </activity>
-        <activity android:name=".handler.HandlerActivity1">
-        </activity>
-        <activity android:name=".eventbus.EventBusActivity">
-
-        </activity>
+        <activity android:name=".handler.HandlerActivity1"></activity>
+        <activity android:name=".eventbus.EventBusActivity"></activity>
         <activity android:name=".eventbus.HandlerSendActivity1" />
         <activity android:name=".html.FirstActivity" />
         <activity android:name=".html.SecondActivity" />
         <activity android:name=".html.ThirdActivity" />
         <activity android:name=".html.WebviewActivity" />
         <activity android:name=".html.HtmlActivity" />
-        <activity android:name=".component.LocalBroadcastActivity"></activity>
+        <activity android:name=".component.LocalBroadcastActivity" />
         <activity android:name=".aidl.origin.AidlActivity" />
         <activity android:name=".hook.SubActivity" />
         <activity android:name=".hook.Hook2Activity" />
         <activity android:name=".hook.Hook1Activity" />
         <activity android:name=".coroutine.CoroutineActivity" />
         <activity android:name=".data_bind.DataBindActivity" />
-        <activity android:name=".viewbinding.ViewbindingActivity" />
+        <activity android:name=".jetpack.viewbinding.ViewbindingActivity" />
         <activity android:name=".base_ui.LifeCycle2Activity" />
         <activity android:name=".base_ui.LifeCycleActivity" />
         <activity android:name=".camera2.VideoRecordActivity" />

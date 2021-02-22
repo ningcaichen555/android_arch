@@ -1,11 +1,10 @@
-package com.example.android_arch.viewbinding
+package com.example.android_arch.jetpack.viewbinding
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.android_arch.R
 import com.example.android_arch.databinding.FragmentViewBindBinding
 
 // TODO: Rename parameter arguments, choose names that match

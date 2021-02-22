@@ -1,4 +1,4 @@
-package com.example.android_arch.jetpack.entity;
+package com.example.android_arch.jetpack.databinding.entity;
 
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;

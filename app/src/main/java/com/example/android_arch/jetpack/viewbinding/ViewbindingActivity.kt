@@ -1,8 +1,7 @@
-package com.example.android_arch.viewbinding
+package com.example.android_arch.jetpack.viewbinding
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.android_arch.R
 import com.example.android_arch.databinding.ActivityViewbindingBinding
 
 class ViewbindingActivity : AppCompatActivity() {

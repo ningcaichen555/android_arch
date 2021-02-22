@@ -1,4 +1,4 @@
-package com.example.android_arch.jetpack.entity;
+package com.example.android_arch.jetpack.databinding.entity;
 
 public class Student {
     private String name;

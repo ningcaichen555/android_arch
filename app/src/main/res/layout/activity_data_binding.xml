@@ -5,19 +5,19 @@
 
         <import type="androidx.databinding.ObservableArrayList" />
 
-        <import type="com.example.android_arch.jetpack.entity.UserInfo" />
+        <import type="com.example.android_arch.jetpack.databinding.entity.UserInfo" />
 
         <variable
             name="userInfo"
-            type="com.example.android_arch.jetpack.entity.UserInfo" />
+            type="com.example.android_arch.jetpack.databinding.entity.UserInfo" />
 
         <variable
             name="user"
-            type="com.example.android_arch.jetpack.entity.User" />
+            type="com.example.android_arch.jetpack.databinding.entity.User" />
 
         <variable
             name="student"
-            type="com.example.android_arch.jetpack.entity.Student" />
+            type="com.example.android_arch.jetpack.databinding.entity.Student" />
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
