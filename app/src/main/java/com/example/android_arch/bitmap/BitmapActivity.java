@@ -13,7 +13,12 @@ import android.util.Log;
 import com.example.android_arch.R;
 import com.example.android_arch.databinding.ActivityBitmapBinding;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class BitmapActivity extends AppCompatActivity {
 
@@ -24,18 +29,18 @@ public class BitmapActivity extends AppCompatActivity {
 
         DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
         int densityDpi = displayMetrics.densityDpi;
-        Log.d("imageTest-densityDpi",String.valueOf(densityDpi));
+        Log.d("imageTest-densityDpi", String.valueOf(densityDpi));
 
         File file = getFileStreamPath("bitmap_test.png");
 
 //        Bitmap compress = compress();
         Bitmap compress = BitmapFactory.decodeResource(getResources(), R.mipmap.bitmap_test);
 //        Bitmap compress = BitmapFactory.decodeFile(file.getAbsolutePath());
-        Log.d("imageTest-filepath",file.getAbsolutePath());
+        Log.d("imageTest-filepath", file.getAbsolutePath());
         viewDataBinding.bitmapTest.setImageBitmap(compress);
 
         int size = sizeOf(compress);
-        Log.d("imageTest-size",String.valueOf(size));
+        Log.d("imageTest-size", String.valueOf(size));
     }
 
     private Bitmap compress() {
@@ -51,6 +56,21 @@ public class BitmapActivity extends AppCompatActivity {
         bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.bitmap_test, options);
         Log.d("imageTest", options.outHeight + "    " + options.outWidth + "   " + options.outMimeType);
         return bitmap;
+    }
+
+    /**
+     * 质量压缩
+     * @param bitmap
+     * @param file
+     * @throws IOException
+     */
+    private void weightCompress(Bitmap bitmap, File file) throws IOException {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        boolean compress = bitmap.compress(Bitmap.CompressFormat.JPEG, 50, byteArrayOutputStream);
+        FileOutputStream fileOutputStream = new FileOutputStream(file);
+        fileOutputStream.write(byteArrayOutputStream.toByteArray());
+        fileOutputStream.flush();
+        fileOutputStream.close();
     }
 
     private int sizeOf(Bitmap bitmap) {

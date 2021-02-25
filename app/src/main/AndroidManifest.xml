@@ -18,14 +18,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".bitmap.BitmapActivity">
+        <activity android:name=".view.ViewActivity">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
 
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-        <activity android:name=".jetpack.databinding.ObserveBindActivity"/>
+        <activity android:name=".bitmap.BitmapActivity">
+
+        </activity>
+        <activity android:name=".jetpack.databinding.ObserveBindActivity" />
         <activity android:name=".handler.HandlerActivity1" />
         <activity android:name=".eventbus.EventBusActivity" />
         <activity android:name=".eventbus.HandlerSendActivity1" />
