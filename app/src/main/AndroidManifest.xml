@@ -18,7 +18,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.ViewActivity">
+        <activity android:name=".view.ViewActivity"/>
+
+        <activity android:name=".jetpack.RecyclerActivity">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
 
@@ -31,6 +33,8 @@
         <activity android:name=".jetpack.databinding.ObserveBindActivity" />
         <activity android:name=".handler.HandlerActivity1" />
         <activity android:name=".eventbus.EventBusActivity" />
+        <activity android:name=".jetpack.DataBindMethodActivity"/>
+        <activity android:name=".jetpack.databinding.DataBindingActivity" />
         <activity android:name=".eventbus.HandlerSendActivity1" />
         <activity android:name=".html.FirstActivity" />
         <activity android:name=".html.SecondActivity" />
