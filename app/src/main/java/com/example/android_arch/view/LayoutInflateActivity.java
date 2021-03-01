@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.view.LayoutInflaterCompat;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -53,6 +54,8 @@ public class LayoutInflateActivity extends AppCompatActivity {
         View view1 = LayoutInflater.from(this).inflate(R.layout.activity_layout_infalte, null);
 
         View view2 = LayoutInflater.from(this).inflate(R.layout.activity_layout_infalte, null, false);
+
+        startActivity(new Intent());
 
     }
 }
