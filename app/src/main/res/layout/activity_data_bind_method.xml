@@ -5,7 +5,7 @@
 
         <variable
             name="user"
-            type="com.example.android_arch.jetpack.entity.User" />
+            type="com.example.android_arch.jetpack.databinding.entity.User" />
 
         <variable
             name="presenter"
@@ -13,7 +13,6 @@
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

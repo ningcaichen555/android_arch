@@ -20,7 +20,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".view.ViewActivity"/>
 
-        <activity android:name=".jetpack.RecyclerActivity">
+        <activity android:name=".jetpack.RecyclerActivity"/>
         <activity android:name=".view.LayoutInflateActivity">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
