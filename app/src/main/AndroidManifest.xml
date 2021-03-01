@@ -21,15 +21,14 @@
         <activity android:name=".view.ViewActivity"/>
 
         <activity android:name=".jetpack.RecyclerActivity">
+        <activity android:name=".view.LayoutInflateActivity">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
 
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-        <activity android:name=".bitmap.BitmapActivity">
-
-        </activity>
+        <activity android:name=".bitmap.BitmapActivity"/>
         <activity android:name=".jetpack.databinding.ObserveBindActivity" />
         <activity android:name=".handler.HandlerActivity1" />
         <activity android:name=".eventbus.EventBusActivity" />
