@@ -18,22 +18,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.customview.CoustomViewActivity"/>
-        <activity android:name=".view.ViewActivity"/>
-
-        <activity android:name=".jetpack.RecyclerActivity"/>
-        <activity android:name=".view.LayoutInflateActivity">
+        <activity android:name=".fragment.FragmentActivity">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
 
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-        <activity android:name=".bitmap.BitmapActivity"/>
+        <activity android:name=".view.customview.CoustomViewActivity" />
+        <activity android:name=".view.ViewActivity" />
+        <activity android:name=".jetpack.RecyclerActivity" />
+        <activity android:name=".view.LayoutInflateActivity" />
+        <activity android:name=".bitmap.BitmapActivity" />
         <activity android:name=".jetpack.databinding.ObserveBindActivity" />
         <activity android:name=".handler.HandlerActivity1" />
         <activity android:name=".eventbus.EventBusActivity" />
-        <activity android:name=".jetpack.DataBindMethodActivity"/>
+        <activity android:name=".jetpack.DataBindMethodActivity" />
         <activity android:name=".jetpack.databinding.DataBindingActivity" />
         <activity android:name=".eventbus.HandlerSendActivity1" />
         <activity android:name=".html.FirstActivity" />
