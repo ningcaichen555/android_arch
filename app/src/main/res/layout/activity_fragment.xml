@@ -6,4 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".fragment.FragmentActivity">
 
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="@color/colorPrimary"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/fragmentRoot"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="@color/colorAccent"
+        android:orientation="vertical"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewPager" />
 </androidx.constraintlayout.widget.ConstraintLayout>
