@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.android_arch.R
+import com.example.android_arch.permissions.PermissionSuccess
 import kotlinx.android.synthetic.main.activity_premission.*
 
 class PremissionActivity : AppCompatActivity() {
@@ -18,20 +19,23 @@ class PremissionActivity : AppCompatActivity() {
         setContentView(R.layout.activity_premission)
 
         callPhone.setOnClickListener {
+
             val checkSelfPermission =
                 ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE)
+
             if (checkSelfPermission == PackageManager.PERMISSION_GRANTED) {
                 callPhone()
             } else {
                 ActivityCompat.requestPermissions(
                     this,
-                    String[]{ Manifest.permission.CALL_PHONE },
+                    arrayOf(Manifest.permission.CALL_PHONE),
                     100
                 )
             }
         }
     }
 
+    @PermissionSuccess(requestCode = 100)
     private fun callPhone() {
         Toast.makeText(this, "callPhone", Toast.LENGTH_LONG).show()
     }
