@@ -1,3 +1,4 @@
+include ':awesome-log'
 include ':gradlePlugin'
 include ':tinkerdemo'
 include ':videolib'

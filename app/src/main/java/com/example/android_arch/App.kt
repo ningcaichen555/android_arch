@@ -7,16 +7,15 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ProcessLifecycleOwner
-import com.example.android_arch.eventbus.MyEventbusIndex
-import com.example.android_arch.hook.AmsHookHelper
+import com.dianping.logan.Logan
+import com.dianping.logan.LoganConfig
 import com.example.android_arch.html.PageInfo
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.FormatStrategy
 import com.orhanobut.logger.Logger
 import com.orhanobut.logger.PrettyFormatStrategy
-import com.top.pluginlibrary.PluginManager
-import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.util.AsyncExecutor
+import java.io.File
 import java.util.*
 
 
@@ -37,6 +36,17 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        val config = LoganConfig.Builder()
+            .setCachePath(applicationContext.filesDir.absolutePath)
+            .setPath(
+                (applicationContext.getExternalFilesDir(null)!!.absolutePath
+                        + File.separator) + "logan_v1"
+            )
+            .setEncryptKey16("0123456789012345".toByteArray())
+            .setEncryptIV16("0123456789012345".toByteArray())
+            .build()
+        Logan.init(config)
+
         //开始计时 中间为需要统计执行时间的代码
         Debug.startMethodTracing()
 
