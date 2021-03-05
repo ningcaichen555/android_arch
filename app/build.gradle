@@ -43,16 +43,16 @@ android {
         enabled = true
     }
 
-    sourceSets{
-        main{
-            res.srcDirs = ['src/main/res','src/main/res-ad','src/main/res-player']
+    sourceSets {
+        main {
+            res.srcDirs = ['src/main/res', 'src/main/res-ad', 'src/main/res-player']
         }
     }
 
 }
-kapt{
-    arguments{
-        arg('eventBusIndex','com.example.android_arch.eventbus.MyEventbusIndex')
+kapt {
+    arguments {
+        arg('eventBusIndex', 'com.example.android_arch.eventbus.MyEventbusIndex')
     }
 }
 
@@ -78,6 +78,15 @@ dependencies {
     implementation "org.greenrobot:eventbus:$eventbus_version"
     kapt "org.greenrobot:eventbus-annotation-processor:$eventbus_version"
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation "com.squareup.okhttp3:okhttp:4.9.0"
+
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.3")
+
+    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
+
+    implementation 'com.dianping.android.sdk:logan:1.2.4'
 }
 //task方式直接创建
 task helloTask {
@@ -124,20 +133,20 @@ this.afterEvaluate { Project project ->
     }
 }
 
-task taskX{
+task taskX {
     doLast {
         println("taskX")
     }
 }
 
-task taskY{
+task taskY {
     doLast {
         println("tasky")
     }
 }
 
-task taskZ(dependsOn: [taskX,taskY],group: "myCoustom"){
-    dependsOn{
+task taskZ(dependsOn: [taskX, taskY], group: "myCoustom") {
+    dependsOn {
         return this.tasks.findAll {
             it.name.startsWith("lib")
         }
@@ -148,47 +157,47 @@ task taskZ(dependsOn: [taskX,taskY],group: "myCoustom"){
 }
 
 
-task lib1{
+task lib1 {
     doLast {
         println("lib1")
     }
 }
 
-task lib2{
+task lib2 {
     doLast {
         println("lib2")
     }
 }
 
-task lib3{
+task lib3 {
     doLast {
         println("lib3")
     }
 }
 
-ext{
+ext {
     versionCode = 100
     versionName = "1.0.0"
     versionTxt = new File('versionTxt.txt')
-    if (!versionTxt.exists()){
+    if (!versionTxt.exists()) {
         versionTxt.createNewFile()
     }
 }
 
-task writeTask{
+task writeTask {
     outputs.file(this.versionTxt)
     def file = this.versionTxt as File
-    file.write(this.versionCode+"")
+    file.write(this.versionCode + "")
     file.write(this.versionName)
 }
 
-task readTask{
+task readTask {
     inputs.file(this.versionTxt)
     def file = this.versionTxt
     println(file.text)
 }
 
 
-task taskTest(dependsOn: [writeTask,readTask],group: "myCoustom"){
+task taskTest(dependsOn: [writeTask, readTask], group: "myCoustom") {
 
 }
