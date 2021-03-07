@@ -7,6 +7,9 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ProcessLifecycleOwner
+import com.example.android_arch.eventbus.MyEventbusIndex
+import com.example.android_arch.exception.ExceptionCatchHandler
+import com.example.android_arch.hook.AmsHookHelper
 import com.dianping.logan.Logan
 import com.dianping.logan.LoganConfig
 import com.example.android_arch.html.PageInfo
@@ -36,6 +39,10 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        ExceptionCatchHandler().apply {
+            init(this@App)
+        }
+
         val config = LoganConfig.Builder()
             .setCachePath(applicationContext.filesDir.absolutePath)
             .setPath(

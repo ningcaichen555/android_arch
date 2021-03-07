@@ -37,7 +37,7 @@ public class IocActivity extends AppCompatActivity {
     }
 
     @Event(R.id.btn_custom_ioc)
-    public void onClickCustomBtn(){
+    public void onClickCustomBtn() {
         Toast.makeText(this, "customBtn点击了", Toast.LENGTH_LONG).show();
     }
 }
