@@ -50,6 +50,7 @@ android {
     }
 
 }
+
 kapt {
     arguments {
         arg('eventBusIndex', 'com.example.android_arch.eventbus.MyEventbusIndex')
@@ -87,6 +88,15 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
 
     implementation 'com.dianping.android.sdk:logan:1.2.4'
+    def multidex_version = "2.0.1"
+    implementation "androidx.multidex:multidex:$multidex_version"
+    //optional, help to generate the final application
+    compileOnly('com.tencent.tinker:tinker-android-anno:1.9.1')
+    //tinker's main Android lib
+    implementation('com.tencent.tinker:tinker-android-lib:1.9.1')
+
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
 }
 //task方式直接创建
 task helloTask {
@@ -201,3 +211,4 @@ task readTask {
 task taskTest(dependsOn: [writeTask, readTask], group: "myCoustom") {
 
 }
+
