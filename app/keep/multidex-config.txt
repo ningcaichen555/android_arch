@@ -1,0 +1,2 @@
+com/example/android_arch/App.class
+com/example/android_arch/ioc/IocActivity.class

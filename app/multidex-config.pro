@@ -1,0 +1,1 @@
+-keep class com.example.android_arch.App

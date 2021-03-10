@@ -15,17 +15,25 @@ android {
     compileSdkVersion 29
 
     defaultConfig {
-        minSdkVersion 21
+        minSdkVersion 19
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        // 设置MultiDex可用
+        multiDexEnabled true
+        // 设置将需要保存至主dex的文件
+        multiDexKeepFile file('keep/multidex-config.txt')
     }
 
     buildTypes {
         release {
             minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -48,6 +56,13 @@ android {
             res.srcDirs = ['src/main/res', 'src/main/res-ad', 'src/main/res-player']
         }
     }
+//    dexOptions {
+//        preDexLibraries = false
+//        additionalParameters = ['--multi-dex',
+//                                '--set-max-idx-number=30000', //控制maindex里面的最大方法数
+//                                '--minimal-main-dex' //maindex最小化，有这句会使得maindex只放必须的类，尽量最小化，会比其他dex要小很多
+//        ]
+//    }
 
 }
 
@@ -88,6 +103,8 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
 
     implementation 'com.dianping.android.sdk:logan:1.2.4'
+    // MultiDex的依赖
+    implementation 'com.android.support:multidex:2.2.0'
     def multidex_version = "2.0.1"
     implementation "androidx.multidex:multidex:$multidex_version"
     //optional, help to generate the final application

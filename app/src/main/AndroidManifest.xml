@@ -20,17 +20,25 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".mmkv.MmkvActivity"/>
-        <activity android:name=".fragment.FragmentActivity" />
-        <activity android:name=".view.PremissionActivity" />
-        <activity android:name=".view.customview.CoustomViewActivity" />
-        <activity android:name=".view.ViewActivity" />
-        <activity android:name=".ioc.IocActivity">
+        <activity android:name=".aidl.BinderActivity">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
 
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
+
+        <service
+            android:name=".aidl.RemoteService"
+            android:enabled="true"
+            android:exported="true"
+            android:process=".remote_service" />
+
+        <activity android:name=".fragment.FragmentActivity" />
+        <activity android:name=".view.PremissionActivity" />
+        <activity android:name=".view.customview.CoustomViewActivity" />
+        <activity android:name=".view.ViewActivity" />
+        <activity android:name=".ioc.IocActivity" />
         <activity android:name=".jetpack.RecyclerActivity" />
         <activity android:name=".view.LayoutInflateActivity" />
         <activity android:name=".bitmap.BitmapActivity" />
