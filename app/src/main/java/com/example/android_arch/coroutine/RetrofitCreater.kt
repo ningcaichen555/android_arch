@@ -10,3 +10,5 @@ import java.util.concurrent.TimeUnit
 val okHttpClient = OkHttpClient().newBuilder().connectTimeout(2000, TimeUnit.DAYS).build()
 
 val retrofit = Retrofit.Builder().baseUrl("").client(okHttpClient).build()
+
+

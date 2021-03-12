@@ -24,7 +24,7 @@ class View1 : View {
     )
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
-        LogUtils.d("onTouchEvent","view1")
+        LogUtils.d("onTouchEvent", "view1")
         return true
     }
 
@@ -35,4 +35,7 @@ class View1 : View {
         setMeasuredDimension(width, height)
     }
 
+    override fun setOnTouchListener(l: OnTouchListener?) {
+
+    }
 }
