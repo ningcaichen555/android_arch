@@ -14,3 +14,5 @@ println("-----------------setting gradle ...")
 if (hasProperty("isLoadTest") ? isLoadTest.toBoolean() : false) {
     include ':test'
 }
+include ':IPC:ipc_remote'
+include ':IPC:ipc_client'

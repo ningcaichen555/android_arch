@@ -19,7 +19,7 @@ import com.tencent.tinker.loader.shareutil.ShareConstants;
  * @time 2021/3/8 21:16
  * @class describe
  */
-@DefaultLifeCycle(application = "MyApp",loadVerifyFlag = false,flags = ShareConstants.TINKER_ENABLE_ALL)
+//@DefaultLifeCycle(application = "MyApp",loadVerifyFlag = false,flags = ShareConstants.TINKER_ENABLE_ALL)
 class MyCustomAppLike extends ApplicationLike {
     public MyCustomAppLike(Application application, int tinkerFlags, boolean tinkerLoadVerifyFlag, long applicationStartElapsedTime, long applicationStartMillisTime, Intent tinkerResultIntent) {
         super(application, tinkerFlags, tinkerLoadVerifyFlag, applicationStartElapsedTime, applicationStartMillisTime, tinkerResultIntent);
